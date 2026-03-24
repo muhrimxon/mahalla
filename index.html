@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Тошкент Эски Шаҳар — Маҳаллалар Энциклопедияси</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #F5EFE0;
+    --parchment: #EDE3CC;
+    --ink: #1A1208;
+    --terracotta: #C4622D;
+    --gold: #B8963E;
+    --teal: #2A6B6E;
+    --teal-light: #3A8B8E;
+    --dust: #8C7B5E;
+    --red: #8B2A2A;
+    --border: rgba(184,150,62,0.3);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--cream);
+    color: var(--ink);
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-weight: 300;
+    min-height: 100vh;
+    background-image:
+      radial-gradient(ellipse at 20% 0%, rgba(196,98,45,0.06) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 100%, rgba(42,107,110,0.06) 0%, transparent 60%),
+      url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23B8963E' fill-opacity='0.04'%3E%3Cpath d='M30 0 L60 30 L30 60 L0 30 Z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+
+  /* ── HEADER ── */
+  header {
+    background: var(--ink);
+    color: var(--cream);
+    padding: 0;
+    position: relative;
+    overflow: hidden;
+  }
+  header::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23B8963E' fill-opacity='0.07'%3E%3Cpath d='M40 0 L80 40 L40 80 L0 40 Z'/%3E%3Cpath d='M40 10 L70 40 L40 70 L10 40 Z' fill='none' stroke='%23B8963E' stroke-width='0.5' stroke-opacity='0.15'/%3E%3C/g%3E%3C/svg%3E");
+    pointer-events: none;
+  }
+  .header-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 48px 32px 40px;
+    position: relative;
+  }
+  .header-ornament {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+  .ornament-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+  .ornament-diamond {
+    width: 8px; height: 8px;
+    background: var(--gold);
+    transform: rotate(45deg);
+  }
+  .site-eyebrow {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-weight: 300;
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    text-align: center;
+    margin-bottom: 14px;
+  }
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 5vw, 52px);
+    font-weight: 400;
+    text-align: center;
+    line-height: 1.15;
+    color: var(--cream);
+    margin-bottom: 10px;
+  }
+  h1 em {
+    font-style: italic;
+    color: var(--gold);
+  }
+  .header-sub {
+    text-align: center;
+    font-size: 14px;
+    color: rgba(245,239,224,0.5);
+    letter-spacing: 0.5px;
+    margin-bottom: 32px;
+  }
+
+  /* ── SEARCH ── */
+  .search-wrap {
+    max-width: 520px;
+    margin: 0 auto;
+    position: relative;
+  }
+  .search-wrap input {
+    width: 100%;
+    background: rgba(245,239,224,0.07);
+    border: 1px solid rgba(184,150,62,0.4);
+    border-radius: 4px;
+    padding: 14px 20px 14px 48px;
+    color: var(--cream);
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 300;
+    outline: none;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .search-wrap input::placeholder { color: rgba(245,239,224,0.35); }
+  .search-wrap input:focus {
+    border-color: var(--gold);
+    background: rgba(245,239,224,0.11);
+  }
+  .search-icon {
+    position: absolute;
+    left: 16px; top: 50%;
+    transform: translateY(-50%);
+    color: var(--gold);
+    font-size: 18px;
+    pointer-events: none;
+  }
+
+  /* ── STATS BAR ── */
+  .stats-bar {
+    background: var(--terracotta);
+    color: var(--cream);
+  }
+  .stats-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 14px 32px;
+    display: flex;
+    gap: 32px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .stat { display: flex; align-items: baseline; gap: 6px; }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+  }
+  .stat-label { font-size: 12px; opacity: 0.8; letter-spacing: 0.5px; }
+  .stat-sep { opacity: 0.3; }
+
+  /* ── MAIN ── */
+  main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 32px 80px;
+  }
+
+  /* ── DAHA SECTION ── */
+  .daha-section {
+    margin-bottom: 48px;
+    animation: fadeUp 0.5s ease both;
+  }
+  .daha-section:nth-child(2) { animation-delay: 0.1s; }
+  .daha-section:nth-child(3) { animation-delay: 0.2s; }
+  .daha-section:nth-child(4) { animation-delay: 0.3s; }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .daha-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 20px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border);
+  }
+  .daha-badge {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: white;
+    flex-shrink: 0;
+  }
+  .badge-beshyogoch { background: var(--terracotta); }
+  .badge-kokcha { background: var(--teal); }
+  .badge-sebzor { background: var(--red); }
+  .badge-shayxontohur { background: var(--dust); }
+
+  .daha-title-wrap h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--ink);
+  }
+  .daha-title-wrap span {
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--dust);
+  }
+  .daha-count {
+    margin-left: auto;
+    font-size: 12px;
+    color: var(--dust);
+    background: var(--parchment);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 4px 12px;
+  }
+
+  /* ── MAHALLA GRID ── */
+  .mahalla-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 8px;
+  }
+
+  .mahalla-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 12px 14px;
+    cursor: pointer;
+    transition: all 0.18s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  .mahalla-card::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 3px;
+    background: var(--accent-color, var(--gold));
+    transform: scaleY(0);
+    transform-origin: bottom;
+    transition: transform 0.18s ease;
+  }
+  .mahalla-card:hover {
+    border-color: var(--gold);
+    box-shadow: 0 4px 16px rgba(26,18,8,0.08);
+    transform: translateY(-1px);
+  }
+  .mahalla-card:hover::before { transform: scaleY(1); }
+  .mahalla-card.has-detail {
+    background: linear-gradient(135deg, white 80%, rgba(184,150,62,0.06));
+  }
+
+  .mahalla-name {
+    font-size: 13.5px;
+    font-weight: 400;
+    color: var(--ink);
+    line-height: 1.4;
+  }
+  .mahalla-alt {
+    font-size: 11px;
+    color: var(--dust);
+    margin-top: 3px;
+    font-style: italic;
+  }
+  .mahalla-tags {
+    display: flex;
+    gap: 4px;
+    margin-top: 6px;
+    flex-wrap: wrap;
+  }
+  .tag {
+    font-size: 9px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    padding: 2px 6px;
+    border-radius: 2px;
+    font-weight: 500;
+  }
+  .tag-bozor { background: rgba(196,98,45,0.1); color: var(--terracotta); }
+  .tag-info { background: rgba(184,150,62,0.15); color: var(--gold); }
+
+  /* ── MODAL ── */
+  .modal-overlay {
+    position: fixed; inset: 0;
+    background: rgba(26,18,8,0.7);
+    backdrop-filter: blur(4px);
+    z-index: 100;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+  .modal-overlay.open { display: flex; }
+
+  .modal {
+    background: var(--cream);
+    border-radius: 6px;
+    max-width: 680px;
+    width: 100%;
+    max-height: 85vh;
+    overflow-y: auto;
+    position: relative;
+    animation: modalIn 0.25s ease;
+    border: 1px solid var(--border);
+  }
+  @keyframes modalIn {
+    from { opacity: 0; transform: scale(0.96) translateY(12px); }
+    to { opacity: 1; transform: scale(1) translateY(0); }
+  }
+
+  .modal-header {
+    background: var(--ink);
+    color: var(--cream);
+    padding: 28px 32px 24px;
+    position: relative;
+  }
+  .modal-daha-label {
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 8px;
+  }
+  .modal-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 400;
+    margin-bottom: 4px;
+  }
+  .modal-alt-names {
+    font-size: 13px;
+    color: rgba(245,239,224,0.5);
+    font-style: italic;
+  }
+  .modal-close {
+    position: absolute;
+    top: 20px; right: 20px;
+    background: rgba(245,239,224,0.1);
+    border: 1px solid rgba(245,239,224,0.2);
+    color: var(--cream);
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 18px;
+    display: flex; align-items: center; justify-content: center;
+    transition: background 0.15s;
+  }
+  .modal-close:hover { background: rgba(245,239,224,0.2); }
+
+  .modal-body { padding: 28px 32px; }
+
+  .modal-section { margin-bottom: 24px; }
+  .modal-section-title {
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--dust);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .modal-section-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  .modal-text {
+    font-size: 14.5px;
+    line-height: 1.75;
+    color: #3A2E1A;
+  }
+
+  .modal-meta-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .meta-item {
+    background: var(--parchment);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 12px 14px;
+  }
+  .meta-key {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--dust);
+    margin-bottom: 4px;
+  }
+  .meta-val {
+    font-size: 14px;
+    color: var(--ink);
+    font-family: 'Playfair Display', serif;
+  }
+
+  .photo-placeholder {
+    background: var(--parchment);
+    border: 1px dashed var(--border);
+    border-radius: 4px;
+    height: 160px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--dust);
+    font-size: 12px;
+    gap: 8px;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .photo-placeholder:hover { background: var(--cream); }
+  .photo-placeholder-icon { font-size: 28px; opacity: 0.5; }
+
+  .chorshu-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(196,98,45,0.1);
+    border: 1px solid rgba(196,98,45,0.2);
+    color: var(--terracotta);
+    font-size: 11px;
+    padding: 4px 10px;
+    border-radius: 3px;
+    margin-bottom: 14px;
+  }
+
+  /* ── NO RESULTS ── */
+  .no-results {
+    text-align: center;
+    padding: 60px 20px;
+    color: var(--dust);
+    display: none;
+  }
+  .no-results.show { display: block; }
+  .no-results-icon { font-size: 36px; margin-bottom: 12px; opacity: 0.4; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--ink);
+    color: rgba(245,239,224,0.4);
+    text-align: center;
+    padding: 28px 32px;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+  }
+  footer strong { color: var(--gold); font-weight: 400; }
+
+  /* ── SCROLLBAR ── */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--parchment); }
+  ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 3px; }
+
+  @media (max-width: 600px) {
+    .mahalla-grid { grid-template-columns: 1fr 1fr; }
+    .modal-meta-grid { grid-template-columns: 1fr; }
+    .stats-inner { gap: 16px; }
+    .header-inner { padding: 32px 20px 28px; }
+    main { padding: 24px 16px 60px; }
+    .modal-body { padding: 20px; }
+    .modal-header { padding: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <p class="site-eyebrow">Тарихий маълумотнома</p>
+    <div class="header-ornament">
+      <div class="ornament-line"></div>
+      <div class="ornament-diamond"></div>
+      <div class="ornament-line"></div>
+    </div>
+    <h1>Тошкент — <em>Эски Шаҳар</em></h1>
+    <p class="header-sub">Маҳаллалар ва мавзелар энциклопедияси</p>
+    <div class="header-ornament" style="margin-bottom:28px">
+      <div class="ornament-line"></div>
+      <div class="ornament-diamond"></div>
+      <div class="ornament-line"></div>
+    </div>
+    <div class="search-wrap">
+      <span class="search-icon">⌕</span>
+      <input type="text" id="searchInput" placeholder="Маҳалла номини қидиринг…" autocomplete="off">
+    </div>
+  </div>
+</header>
+
+<div class="stats-bar">
+  <div class="stats-inner">
+    <div class="stat"><span class="stat-num" id="totalCount">200+</span><span class="stat-label">маҳалла</span></div>
+    <div class="stat-sep">·</div>
+    <div class="stat"><span class="stat-num">4</span><span class="stat-label">даҳа</span></div>
+    <div class="stat-sep">·</div>
+    <div class="stat"><span class="stat-num" id="detailCount">2</span><span class="stat-label">тафсилли тавсиф</span></div>
+    <div class="stat-sep">·</div>
+    <div class="stat"><span class="stat-num">XVIII–XX</span><span class="stat-label">асрлар тарихи</span></div>
+  </div>
+</div>
+
+<main id="mainContent"></main>
+
+<div class="no-results" id="noResults">
+  <div class="no-results-icon">🔍</div>
+  <p>Ҳеч нарса топилмади</p>
+</div>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
+  <div class="modal" id="modalBox">
+    <div class="modal-header">
+      <div class="modal-daha-label" id="modalDaha"></div>
+      <div class="modal-title" id="modalTitle"></div>
+      <div class="modal-alt-names" id="modalAlt"></div>
+      <button class="modal-close" onclick="closeModalDirect()">✕</button>
+    </div>
+    <div class="modal-body" id="modalBody"></div>
+  </div>
+</div>
+
+<footer>
+  <strong>Тошкент Эски Шаҳар Маҳаллалари</strong> — тарихий маълумотнома · Маълумотлар тўлдириб борилади
+</footer>
+
+<script>
+const DATA = {
+  "Бешёғоч даҳаси": {
+    color: "badge-beshyogoch",
+    accent: "#C4622D",
+    mahallalar: [
+      { n: "Андижон" },
+      { n: "Арпапоя 1" },
+      { n: "Арпапоя 2" },
+      { n: "Бадрбой" },
+      { n: "Баландкўприк" },
+      { n: "Баландмасжид" },
+      { n: "Бойкўча" },
+      { n: "Болтабой" },
+      { n: "Бўйрабозор" },
+      { n: "Ганчхона" },
+      { n: "Гулбозор", alt: "Чорсу бозори маҳалласи", bozor: true },
+      { n: "Гуручбозор", alt: "Чорсу бозори маҳалласи", bozor: true },
+      { n: "Дархон" },
+      { n: "Ëпуғли", alt: "Ëпуғлимозор; бир қисми Шайхонтоҳур даҳасида" },
+      { n: "Зангиота" },
+      { n: "Зевак" },
+      { n: "Зироатфуруш", alt: "Чорсу бозори маҳалласи", bozor: true },
+      { n: "Жирлимасжид" },
+      { n: "Жомемасжид", alt: "Матжоме, Масжоме; Чорсу бозори маҳалласи", bozor: true },
+      { n: "Калавабозор", alt: "Чорсу бозори маҳалласи", bozor: true },
+      { n: "Камолон 1", alt: "Катта Камолон" },
+      { n: "Камолон 2", alt: "Кичик Камолон" },
+      { n: "Каппон", alt: "Каппон бозор; Чорсу бозори маҳалласи", bozor: true },
+      { n: "Катта маҳалла", alt: "Тепа, Янгикалон" },
+      { n: "Кўкмасжид" },
+      { n: "Лаклак", alt: "Лайлакхона" },
+      { n: "Маҳкама", alt: "Чорсу бозори маҳалласи, бир қисми Кўкча, Себзор даҳаларида", bozor: true },
+      { n: "Маъдалихон" },
+      { n: "Мирзағози" },
+      { n: "Мирлар" },
+      { n: "Мурод" },
+      { n: "Отабойҳожи" },
+      { n: "Поякилик", alt: "Чорсу бозори маҳалласи, бир қисми Себзор даҳасида", bozor: true },
+      { n: "Самарқанд дарвоза" },
+      { n: "Сарфароз" },
+      { n: "Сорчабон" },
+      { n: "Сирлимасжид" },
+      { n: "Тузукота" },
+      { n: "Темирчи", alt: "Темирчилик; Чорсу бозори маҳалласи", bozor: true },
+      { n: "Тешавой" },
+      { n: "Тиканлимозор" },
+      { n: "Хонақоҳ", alt: "Хонақоҳи бузург; бир қисми Кўкча даҳасида" },
+      { n: "Хўжамаҳалла" },
+      { n: "Чархкамолон 1" },
+      { n: "Чархкамолон 2" },
+      { n: "Чақар", alt: "Бешёғоч кўчасида" },
+      { n: "Чақар", alt: "Самарқанд дарвозаси ғарбида" },
+      { n: "Чорсу", alt: "Чорсу бозори маҳалласи", bozor: true },
+      { n: "Чуқуркўприк" },
+      { n: "Чуқуркўча" },
+      { n: "Эскинамозгоҳ" },
+      { n: "Эски Ўрда", alt: "Кўҳна Ўрда" },
+      { n: "Эшонгузар 1" }, { n: "Эшонгузар 2" }, { n: "Эшонгузар 3" }, { n: "Эшонгузар 4" },
+      { n: "Ялангқор 1" }, { n: "Ялангқор 2" },
+      { n: "Янгимаҳалла" },
+      { n: "Янгихонақоҳ" },
+      { n: "Янгиқаландархона" },
+      { n: "Ўзбекмаҳалла" },
+      { n: "Ўроқчилик", alt: "Чорсу бозори маҳалласи", bozor: true },
+      { n: "Ўқчи" },
+      { n: "Ўқчидарвоза" },
+      { n: "Қабсота" },
+      { n: "Қаландархона" },
+      { n: "Қозинизомитдин" },
+      { n: "Қоратош" },
+      { n: "Қувурариқ" },
+      { n: "Қўрғонтаги" },
+      { n: "Қўшмозор" },
+      { n: "Қўғирмоч" },
+      { n: "Ғўзабозор", alt: "Пахтабозор; Чорсу бозори маҳалласи", bozor: true },
+      { n: "Ғишткўприк" },
+    ]
+  },
+  "Кўкча даҳаси": {
+    color: "badge-kokcha",
+    accent: "#2A6B6E",
+    mahallalar: [
+      { n: "Айрилиш" }, { n: "Аллон", alt: "Оллон" }, { n: "Баландкўприк" },
+      { n: "Гузарбоши" }, { n: "Дамак" }, { n: "Жарариқ" }, { n: "Ишқобод" },
+      { n: "Каллахона 1" }, { n: "Каллахона 2" }, { n: "Каттаҳовуз" },
+      { n: "Кесакқўрғон" }, { n: "Кунжак" }, { n: "Кўкча" }, { n: "Лангар" },
+      { n: "Маҳкама", alt: "Чорсу бозори маҳалласи, бир қисми Бешёғоч, Себзор даҳаларида", bozor: true },
+      { n: "Молҳарам" }, { n: "Обиназир" }, { n: "Оқилон", alt: "Оқлон" },
+      { n: "Оқтепа", alt: "Нишабариқ, Нишабқулоқ" },
+      { n: "Пичоқчилик", alt: "Пичоқбозор; Чорсу бозори маҳалласи", bozor: true },
+      { n: "Подахона" }, { n: "Сархумдон" }, { n: "Сақичмон" }, { n: "Сағбон" },
+      { n: "Тепа" }, { n: "Торкўча", alt: "Толкўча" }, { n: "Тўқлижаллоб" },
+      { n: "Хиёбон" },
+      { n: "Ходабозор", alt: "Ëғочбозор; Чорсу бозори маҳалласи", bozor: true },
+      { n: "Хотинмасжид", alt: "бир қисми Себзор даҳасида" },
+      { n: "Хўжакўча" }, { n: "Хўжапарихон" },
+      { n: "Чақар" }, { n: "Чақар", alt: "Чиғатой Чақар" },
+      { n: "Чиғатой" }, { n: "Чуқурқишлоқ" },
+      { n: "Шайх Зайниддинбобо" },
+      { n: "Янгишаҳар", alt: "Чиғатой Янгишаҳар" },
+      { n: "Ўзгант" }, { n: "Ўрикзор" }, { n: "Қатортерак" }, { n: "Қилбелбоғ" },
+      { n: "Қозикўча" },
+      { n: "Қозоқбозор", alt: "Чорсу бозори маҳалласи, бир қисми Себзор даҳасида", bozor: true },
+      { n: "Қорақийиқ" }, { n: "Қўрғонтаги" },
+      { n: "Ҳожималик", alt: "Чорсу бозори маҳалласи", bozor: true },
+      { n: "Ҳофизи Куйки", alt: "Ҳофиз Кўхакий" },
+    ]
+  },
+  "Себзор даҳаси": {
+    color: "badge-sebzor",
+    accent: "#8B2A2A",
+    mahallalar: [
+      { n: "Аъламшаҳид" }, { n: "Ассувот", alt: "Оссувот" },
+      { n: "Бандакбозор", alt: "Чорсу бозори маҳалласи", bozor: true },
+      { n: "Бешоғайни" }, { n: "Ботир" },
+      { n: "Булғорибозор", alt: "Чорсу бозори маҳалласи", bozor: true },
+      { n: "Дарвозакент" }, { n: "Ëв", alt: "Ëвариқ" }, { n: "Заргарлик" },
+      { n: "Жинкўча" }, { n: "Кичик Жангоҳ" },
+      { n: "Ковушфурушлик", alt: "Чорсу бозори маҳалласи, бир қисми Кўкча даҳасида", bozor: true },
+      { n: "Кунжак" }, { n: "Кохота" }, { n: "Лабзак", alt: "Лабзакариқ" },
+      { n: "Лайлакуя" },
+      { n: "Маҳкама", alt: "Чорсу бозори маҳалласи, бир қисми Бешёғоч, Кўкча даҳаларида", bozor: true },
+      { n: "Махсидўз", alt: "Махсидўзлик; Чорсу бозори маҳалласи", bozor: true },
+      { n: "Мозорхон" },
+      { n: "Оҳангузар 1" }, { n: "Оҳангузар 2" }, { n: "Оҳангузар 3" },
+      { n: "Парчабоф" },
+      { n: "Поякилик", alt: "Чорсу бозори маҳалласи, бир қисми Бешёғоч даҳасида", bozor: true },
+      { n: "Пуштиҳаммом" }, { n: "Равот", alt: "Равотак" },
+      { n: "Сандиқчилик", alt: "Сандиқбозор; Чорсу бозори маҳалласи", bozor: true },
+      { n: "Сархумдон" }, { n: "Себзор" }, { n: "Табибкўча" }, { n: "Тарновбоши" },
+      { n: "Тахтапултепа" },
+      { n: "Тақачи", alt: "Тақачилик; Чорсу бозори маҳалласи", bozor: true },
+      { n: "Тиканлимозор" }, { n: "Тиккўча" }, { n: "Тинчоб", alt: "Тинчобод" },
+      { n: "Тўпқайрағоч 1" }, { n: "Тўпқайрағоч 2" },
+      { n: "Ҳасанбой" }, { n: "Хотинмасжид", alt: "бир қисми Кўкча даҳасида" },
+      { n: "Хўжакўча" }, { n: "Хўжатарашкан", alt: "Хўжа тарози шикан" },
+      { n: "Чалақозоқ" }, { n: "Чархчикўча" }, { n: "Чақар" },
+      { n: "Чувулдоқ" }, { n: "Шохингузар" }, { n: "Эскижўва" },
+      { n: "Юқори Қадувот" }, { n: "Юқори Тахтапул" }, { n: "Яккачўб" },
+      { n: "Янгишаҳар" }, { n: "Ўрта Тахтапул" }, { n: "Қанғликўча" },
+      { n: "Қозикўча" },
+      { n: "Қозоқбозор", alt: "Чорсу бозори маҳалласи", bozor: true },
+      { n: "Қорасарой" }, { n: "Қоратут" },
+      { n: "Қошиқчилик", alt: "Чорсу бозори маҳалласи", bozor: true },
+      { n: "Қумлоқ" }, { n: "Қўштут" }, { n: "Ғишткўприк" },
+      { n: "Халимкўп" },
+      { n: "Хастимом", alt: "Ҳазрати Имом" },
+      { n: "Ҳовузбўйи" },
+    ]
+  },
+  "Шайхонтоҳур даҳаси": {
+    color: "badge-shayxontohur",
+    accent: "#8C7B5E",
+    mahallalar: [
+      { n: "Баландмасжид" }, { n: "Бекобод" }, { n: "Ганчтепа" }, { n: "Говкуш" },
+      { n: "Дархон", alt: "Турсун Султон" }, { n: "Девони Бурх" }, { n: "Девонбеги" },
+      { n: "Дегрез", alt: "Дероз" }, { n: "Ертешган" },
+      { n: "Ëпуғли", alt: "Ëпуғлимозор; бир қисми Бешёғоч даҳасида" },
+      { n: "Занжирли" }, { n: "Жаркўча" }, { n: "Жартегирмон" }, { n: "Илла" },
+      { n: "Калтатой" }, { n: "Катта Жангоҳ" }, { n: "Мараимхалфа" },
+      { n: "Мўғулкўча" }, { n: "Олмазор", alt: "Баландмасжид маҳалласининг жанубида" },
+      { n: "Олмазор", alt: "шаҳарнинг янги қисмида" },
+      { n: "Олтинлимасжид" }, { n: "Орқакўча" },
+      {
+        n: "Падаркуш",
+        detail: true,
+        description: "Шайхонтоҳур даҳасидаги маҳалла. Орқакўча, Дукчи, Занжирлик, Пуштибоғ, Қудуқбоши маҳаллалари билан чегарадош бўлган. Маҳаллада 160 га яқин хонадон яшаган. Аҳолиси асосан ўзбеклар бўлиб, кўпчилиги тўқимачилик билан шуғулланган, шунинг учун Падаркушни «бўзчи маҳалла» деб ҳам аташган. Шаҳар ташқарисидаги ерларида деҳқончилик ва боғдорчилик билан ҳам шуғулланилган.",
+        infra: "Мактаб, 2 масжид, новвойхона, қоғоз тайёрлаш устахонаси, баққоллик дўконлари, 2 жувозхона (ХХ аср боши)",
+        today: "Ҳозир территорияси Марказ-13 микрорайони жойлашган",
+        xonadon: "~160",
+        aholi: "Асосан ўзбеклар"
+      },
+      { n: "Пастак" }, { n: "Пуштибоғ" }, { n: "Раискўча" }, { n: "Сўгалмасжид" },
+      { n: "Тарлак", alt: "Тарлоқ" }, { n: "Тарновбоши" }, { n: "Тожикмаҳалла" },
+      { n: "Турк", alt: "Туркариқ, Янгишаҳар-турк" }, { n: "Турктепа", alt: "Янгишаҳар-турк" },
+      { n: "Хадра" }, { n: "Хўжа Рўшноий" }, { n: "Чалмак", alt: "Чармак" },
+      { n: "Чуқурқишлоқ" }, { n: "Шайхонтоҳур", alt: "Шайх Хованд Тоҳур" },
+      { n: "Шатак" }, { n: "Ширинқудуқ" }, { n: "Шўртепа" }, { n: "Эгарчи" },
+      { n: "Эски Яккабозор", alt: "Чорсу бозори маҳалласи", bozor: true },
+      { n: "Юқори Мерганча" }, { n: "Юқори Оқмасжид" },
+      { n: "Янгишаҳар Ганчтепа" }, { n: "Янгишаҳар Дарвоза" },
+      { n: "Янгишаҳар Лабзак", alt: "Янгишаҳар Сирлимасжид" },
+      { n: "Янгишаҳар Минор" }, { n: "Янгишаҳар Шоҳидонтепа" }, { n: "Янгишаҳар Қиёт" },
+      { n: "Ўрда" }, { n: "Ўркўча" }, { n: "Ўрта Оқмасжид" }, { n: "Ўқчи" },
+      { n: "Қаймоқбозор" }, { n: "Қатортерак" },
+      {
+        n: "Қашқар",
+        alt: "Қашқармаҳалла",
+        detail: true,
+        description: "Шайхонтоҳур даҳасидаги қадимги маҳалла. Турк, Илла, Тожик маҳаллалари билан чегарадош бўлган. Бир чеккаси Янги шаҳарга туташган. Қарийб 130 хонадон яшаган. Аҳолиси 1830-йилларда Қўқон хони томонидан, асосан, Қашқардан кўчириб келтирилган қашқарликлар (номи шундан), бир қисми ўзбеклар бўлган; савдо-сотиқ, деҳқончилик ва боғдорчилик билан шуғулланган.",
+        infra: "4 та карвонсарой, бозор, масжид, баққоллик дўконлари (ХХ аср боши)",
+        today: "Тошкент зилзиласи (1966) эпицентри Қашқарда бўлган. Ҳозир Қашқар маҳалла турар жой мавзеи барпо этилган",
+        xonadon: "~130",
+        aholi: "Қашқарликлар ва ўзбеклар",
+        extra: "Ҳамза маҳаллада мактаб очиб, бир муддат ишлаган. 1865 йил рус қўшинлари Тошкентни босиб олганида Қашқардаги эгасиз хонадонларга рус офицерлари жойлашиб олган."
+      },
+      { n: "Қиёт" }, { n: "Қиёткаттакўча" }, { n: "Қиёттепа" }, { n: "Қиётторкўча" },
+      { n: "Қишлоқтепа" }, { n: "Қуйи Мерганча" }, { n: "Қуйи Оқмасжид" },
+    ]
+  }
+};
+
+function renderAll(filter = "") {
+  const main = document.getElementById("mainContent");
+  const noRes = document.getElementById("noResults");
+  main.innerHTML = "";
+  let totalVisible = 0;
+
+  for (const [daha, info] of Object.entries(DATA)) {
+    const filtered = filter
+      ? info.mahallalar.filter(m =>
+          m.n.toLowerCase().includes(filter.toLowerCase()) ||
+          (m.alt && m.alt.toLowerCase().includes(filter.toLowerCase()))
+        )
+      : info.mahallalar;
+
+    if (filtered.length === 0) continue;
+    totalVisible += filtered.length;
+
+    const initial = daha.charAt(0);
+    const sec = document.createElement("div");
+    sec.className = "daha-section";
+
+    sec.innerHTML = `
+      <div class="daha-header">
+        <div class="daha-badge ${info.color}">${initial}</div>
+        <div class="daha-title-wrap">
+          <h2>${daha}</h2>
+          <span>Даҳа · тарихий туман</span>
+        </div>
+        <div class="daha-count">${filtered.length} маҳалла</div>
+      </div>
+      <div class="mahalla-grid"></div>
+    `;
+
+    const grid = sec.querySelector(".mahalla-grid");
+
+    filtered.forEach(m => {
+      const card = document.createElement("div");
+      card.className = "mahalla-card" + (m.detail ? " has-detail" : "");
+      card.style.setProperty("--accent-color", info.accent);
+
+      let tags = "";
+      if (m.bozor) tags += `<span class="tag tag-bozor">Чорсу бозори</span>`;
+      if (m.detail) tags += `<span class="tag tag-info">✦ тавсиф бор</span>`;
+
+      card.innerHTML = `
+        <div class="mahalla-name">${m.n}</div>
+        ${m.alt ? `<div class="mahalla-alt">${m.alt}</div>` : ""}
+        ${tags ? `<div class="mahalla-tags">${tags}</div>` : ""}
+      `;
+
+      card.addEventListener("click", () => openModal(m, daha, info.accent));
+      grid.appendChild(card);
+    });
+
+    main.appendChild(sec);
+  }
+
+  noRes.classList.toggle("show", totalVisible === 0);
+}
+
+function openModal(m, daha, accent) {
+  document.getElementById("modalDaha").textContent = daha;
+  document.getElementById("modalTitle").textContent = m.n;
+  document.getElementById("modalAlt").textContent = m.alt ? "Бошқа номлари: " + m.alt : "";
+
+  const body = document.getElementById("modalBody");
+
+  if (m.detail) {
+    body.innerHTML = `
+      ${m.bozor ? `<div class="chorshu-badge">🏪 Чорсу бозори маҳалласи</div>` : ""}
+
+      <div class="modal-section">
+        <div class="modal-section-title">Тарихий тавсиф</div>
+        <p class="modal-text">${m.description}</p>
+        ${m.extra ? `<p class="modal-text" style="margin-top:12px">${m.extra}</p>` : ""}
+      </div>
+
+      <div class="modal-section">
+        <div class="modal-section-title">Асосий маълумотлар</div>
+        <div class="modal-meta-grid">
+          <div class="meta-item"><div class="meta-key">Хонадонлар сони</div><div class="meta-val">${m.xonadon}</div></div>
+          <div class="meta-item"><div class="meta-key">Аҳоли</div><div class="meta-val">${m.aholi}</div></div>
+          <div class="meta-item" style="grid-column:1/-1"><div class="meta-key">Инфратузилма</div><div class="meta-val" style="font-family:inherit;font-size:13px">${m.infra}</div></div>
+        </div>
+      </div>
+
+      <div class="modal-section">
+        <div class="modal-section-title">Бугунги кунда</div>
+        <p class="modal-text">${m.today}</p>
+      </div>
+
+      <div class="modal-section">
+        <div class="modal-section-title">Фотосуратлар</div>
+        <div class="photo-placeholder">
+          <div class="photo-placeholder-icon">🖼</div>
+          <span>Фото қўшиш учун боsinг</span>
+        </div>
+      </div>
+    `;
+  } else {
+    body.innerHTML = `
+      ${m.bozor ? `<div class="chorshu-badge">🏪 Чорсу бозори маҳалласи</div>` : ""}
+      <div class="modal-section">
+        <div class="modal-section-title">Маълумот</div>
+        <p class="modal-text" style="color:var(--dust);font-style:italic">
+          Бу маҳалла учун тафсилли тавсиф ҳали қўшилмаган.<br>
+          Маълумот тўлдирилиши кутилмоқда.
+        </p>
+      </div>
+      <div class="modal-section">
+        <div class="modal-section-title">Фотосуратлар</div>
+        <div class="photo-placeholder">
+          <div class="photo-placeholder-icon">🖼</div>
+          <span>Фото қўшиш учун босинг</span>
+        </div>
+      </div>
+    `;
+  }
+
+  document.getElementById("modalOverlay").classList.add("open");
+  document.body.style.overflow = "hidden";
+}
+
+function closeModal(e) {
+  if (e.target === document.getElementById("modalOverlay")) closeModalDirect();
+}
+function closeModalDirect() {
+  document.getElementById("modalOverlay").classList.remove("open");
+  document.body.style.overflow = "";
+}
+
+document.addEventListener("keydown", e => { if (e.key === "Escape") closeModalDirect(); });
+
+document.getElementById("searchInput").addEventListener("input", e => {
+  renderAll(e.target.value.trim());
+});
+
+// Count
+const total = Object.values(DATA).reduce((s, d) => s + d.mahallalar.length, 0);
+document.getElementById("totalCount").textContent = total;
+const detailed = Object.values(DATA).reduce((s, d) => s + d.mahallalar.filter(m => m.detail).length, 0);
+document.getElementById("detailCount").textContent = detailed;
+
+renderAll();
+</script>
+</body>
+</html>
