@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Тошкент Маҳаллалари — Тарихи Жадидайи Тошканд</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;1,8..60,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #f5f0e8;
+    --parchment: #ede6d3;
+    --ink: #1a1209;
+    --brown: #5c3d1e;
+    --amber: #b8740a;
+    --gold: #d4a043;
+    --rust: #8b3a1a;
+    --muted: #7a6a52;
+    --border: #c8b89a;
+    --shadow: rgba(26,18,9,0.15);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background-color: var(--cream);
+    color: var(--ink);
+    font-family: 'Source Serif 4', Georgia, serif;
+    font-size: 16px;
+    line-height: 1.75;
+  }
+
+  /* ── NOISE TEXTURE OVERLAY ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1000;
+    opacity: 0.4;
+  }
+
+  /* ── HEADER ── */
+  header {
+    text-align: center;
+    padding: 72px 24px 56px;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+  }
+
+  header::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--rust), var(--amber), var(--gold), var(--amber), var(--rust));
+  }
+
+  .ornament {
+    font-size: 28px;
+    color: var(--gold);
+    letter-spacing: 12px;
+    display: block;
+    margin-bottom: 20px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 0.2s;
+  }
+
+  h1 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(32px, 5vw, 58px);
+    font-weight: 700;
+    line-height: 1.15;
+    color: var(--brown);
+    letter-spacing: -0.5px;
+    opacity: 0;
+    animation: fadeUp 0.9s ease forwards 0.4s;
+  }
+
+  .subtitle {
+    margin-top: 16px;
+    font-size: 15px;
+    color: var(--muted);
+    font-style: italic;
+    letter-spacing: 0.3px;
+    opacity: 0;
+    animation: fadeUp 0.9s ease forwards 0.6s;
+  }
+
+  .header-rule {
+    width: 80px;
+    height: 1px;
+    background: var(--gold);
+    margin: 24px auto 0;
+    opacity: 0;
+    animation: fadeUp 0.9s ease forwards 0.7s;
+  }
+
+  /* ── INTRO SECTION ── */
+  .intro {
+    max-width: 780px;
+    margin: 56px auto;
+    padding: 0 32px;
+    opacity: 0;
+    animation: fadeUp 0.9s ease forwards 0.8s;
+  }
+
+  .intro p {
+    font-size: 17px;
+    color: var(--brown);
+    text-align: justify;
+    hyphens: auto;
+  }
+
+  .intro p + p { margin-top: 16px; }
+
+  /* ── STATS STRIP ── */
+  .stats {
+    background: var(--parchment);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 40px 32px;
+    display: flex;
+    justify-content: center;
+    gap: 0;
+    flex-wrap: wrap;
+    opacity: 0;
+    animation: fadeUp 0.9s ease forwards 1s;
+  }
+
+  .stat-item {
+    text-align: center;
+    padding: 16px 48px;
+    border-right: 1px solid var(--border);
+  }
+  .stat-item:last-child { border-right: none; }
+
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 44px;
+    font-weight: 700;
+    color: var(--amber);
+    line-height: 1;
+    display: block;
+  }
+
+  .stat-label {
+    font-size: 12px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-top: 6px;
+    display: block;
+  }
+
+  /* ── SECTION HEADINGS ── */
+  .section {
+    max-width: 1100px;
+    margin: 64px auto;
+    padding: 0 32px;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 36px;
+  }
+
+  .section-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 60px;
+    font-weight: 700;
+    color: var(--parchment);
+    line-height: 1;
+    text-shadow: 1px 1px 0 var(--border);
+    min-width: 52px;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--brown);
+  }
+
+  .section-title em {
+    font-size: 14px;
+    font-style: normal;
+    font-family: 'Source Serif 4', serif;
+    color: var(--muted);
+    display: block;
+    margin-top: 4px;
+    font-weight: 300;
+    letter-spacing: 0.3px;
+  }
+
+  /* ── DAHA GRID ── */
+  .daha-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+
+  @media (max-width: 700px) {
+    .daha-grid { grid-template-columns: 1fr; }
+    .stat-item { padding: 16px 28px; }
+  }
+
+  .daha-card {
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    overflow: hidden;
+    background: #fff;
+    box-shadow: 0 2px 12px var(--shadow);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .daha-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 24px var(--shadow);
+  }
+
+  .daha-head {
+    padding: 20px 24px 16px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .daha-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 700;
+  }
+
+  .daha-sub {
+    font-size: 12px;
+    color: var(--muted);
+    font-style: italic;
+    margin-top: 3px;
+  }
+
+  .daha-body { padding: 20px 24px; }
+
+  .mahalla-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .tag {
+    font-size: 12.5px;
+    padding: 4px 12px;
+    border-radius: 1px;
+    border: 1px solid;
+    letter-spacing: 0.2px;
+    cursor: default;
+    transition: background 0.15s;
+  }
+
+  .tag-s  { background: #fdf8f0; border-color: #d4a043; color: #7a4f10; }
+  .tag-k  { background: #f0f5fb; border-color: #7aa3c8; color: #1e4a72; }
+  .tag-sh { background: #faf0f0; border-color: #c87a7a; color: #6b2020; }
+  .tag-b  { background: #f0f7f0; border-color: #7ab87a; color: #1e5a1e; }
+
+  .tag-s:hover  { background: #f5e8cc; }
+  .tag-k:hover  { background: #d6e6f5; }
+  .tag-sh:hover { background: #f5d6d6; }
+  .tag-b:hover  { background: #d6f0d6; }
+
+  /* ── TABLE SECTIONS ── */
+  .info-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14.5px;
+    background: #fff;
+    box-shadow: 0 2px 12px var(--shadow);
+    border: 1px solid var(--border);
+  }
+
+  .info-table thead tr {
+    background: var(--parchment);
+    border-bottom: 2px solid var(--border);
+  }
+
+  .info-table th {
+    padding: 14px 18px;
+    text-align: left;
+    font-family: 'Playfair Display', serif;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--brown);
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+
+  .info-table td {
+    padding: 14px 18px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+    color: var(--ink);
+    line-height: 1.65;
+  }
+
+  .info-table tr:last-child td { border-bottom: none; }
+
+  .info-table tr:hover td { background: #fdf8f0; }
+
+  .mahalla-name-cell {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 15px;
+    color: var(--brown);
+    white-space: nowrap;
+  }
+
+  .badge {
+    display: inline-block;
+    font-size: 11px;
+    padding: 2px 8px;
+    border-radius: 1px;
+    font-family: 'Source Serif 4', serif;
+    font-style: italic;
+  }
+
+  .badge-s  { background: #fdf8f0; color: #7a4f10; border: 1px solid #d4a043; }
+  .badge-k  { background: #f0f5fb; color: #1e4a72; border: 1px solid #7aa3c8; }
+  .badge-sh { background: #faf0f0; color: #6b2020; border: 1px solid #c87a7a; }
+  .badge-b  { background: #f0f7f0; color: #1e5a1e; border: 1px solid #7ab87a; }
+
+  /* ── NAMING BOX ── */
+  .naming-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+
+  @media (max-width: 700px) {
+    .naming-grid { grid-template-columns: 1fr; }
+  }
+
+  .naming-card {
+    background: #fff;
+    border: 1px solid var(--border);
+    padding: 22px 20px;
+    box-shadow: 0 2px 8px var(--shadow);
+    border-top: 3px solid var(--amber);
+  }
+
+  .naming-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--brown);
+    margin-bottom: 10px;
+  }
+
+  .naming-examples {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.7;
+    font-style: italic;
+  }
+
+  /* ── BOSHQARUV ── */
+  .boshqaruv-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+
+  @media (max-width: 700px) {
+    .boshqaruv-list { grid-template-columns: 1fr; }
+  }
+
+  .boshq-card {
+    background: #fff;
+    border: 1px solid var(--border);
+    padding: 20px 22px;
+    box-shadow: 0 2px 8px var(--shadow);
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+  }
+
+  .boshq-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--parchment);
+    text-shadow: 1px 1px 0 var(--border);
+    line-height: 1;
+    min-width: 32px;
+  }
+
+  .boshq-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--brown);
+  }
+
+  .boshq-desc {
+    font-size: 13.5px;
+    color: var(--muted);
+    margin-top: 5px;
+    line-height: 1.6;
+  }
+
+  /* ── QUOTE BLOCK ── */
+  .pull-quote {
+    max-width: 720px;
+    margin: 64px auto;
+    padding: 0 32px;
+    text-align: center;
+    position: relative;
+  }
+
+  .pull-quote::before {
+    content: '❝';
+    font-family: 'Playfair Display', serif;
+    font-size: 80px;
+    color: var(--parchment);
+    line-height: 0.6;
+    display: block;
+    margin-bottom: 16px;
+  }
+
+  .pull-quote p {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-style: italic;
+    color: var(--brown);
+    line-height: 1.65;
+  }
+
+  .pull-quote cite {
+    display: block;
+    margin-top: 16px;
+    font-size: 13px;
+    color: var(--muted);
+    font-style: normal;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+
+  /* ── DIVIDER ── */
+  .divider {
+    text-align: center;
+    color: var(--gold);
+    font-size: 20px;
+    letter-spacing: 16px;
+    padding: 24px 0;
+    opacity: 0.6;
+  }
+
+  hr.section-rule {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 0 32px;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--parchment);
+    border-top: 1px solid var(--border);
+    padding: 40px 32px;
+    text-align: center;
+    margin-top: 64px;
+  }
+
+  footer p {
+    font-size: 13px;
+    color: var(--muted);
+    font-style: italic;
+    line-height: 1.8;
+  }
+
+  footer strong {
+    color: var(--brown);
+    font-style: normal;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(18px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <span class="ornament">✦ ✦ ✦</span>
+  <h1>Тошкент Маҳаллалари</h1>
+  <p class="subtitle">«Тарихи жадидайи Тошканд» асари асосида — Муҳаммад Солиҳхужа</p>
+  <div class="header-rule"></div>
+</header>
+
+<!-- INTRO -->
+<div class="intro reveal">
+  <p>Тошкент шаҳрининг тарихий маъмурий тузилишида маҳаллалар алоҳида ўрин тутган. Мудофаа деворининг ички қисми, яъни шаҳар ҳудуди бир неча маҳаллаларни ўз ичига олган <strong>тўрт даҳадан</strong> иборат бўлган — Себзор, Кўкча, Шайхонтаҳур ва Бешёроч.</p>
+  <p>Муҳаммад Солиҳхужа ўзининг «Тарихи жадидайи Тошканд» асарида эллик нафардан ортиқ маҳалла номини тилга олади. Маҳаллалар касб-ҳунар, жойлашув ёки нуфузли шахслар номи билан аталган; уларнинг бошқаруви оқсоқол, мингбоши ва элликбошилар қўлида бўлган.</p>
+</div>
+
+<!-- STATS -->
+<div class="stats reveal">
+  <div class="stat-item">
+    <span class="stat-num">187</span>
+    <span class="stat-label">Архив ҳужжати (1868)</span>
+  </div>
+  <div class="stat-item">
+    <span class="stat-num">149</span>
+    <span class="stat-label">Маев (1876)</span>
+  </div>
+  <div class="stat-item">
+    <span class="stat-num">183</span>
+    <span class="stat-label">Шишкин (1925)</span>
+  </div>
+  <div class="stat-item">
+    <span class="stat-num">281</span>
+    <span class="stat-label">Маллицкий (1927)</span>
+  </div>
+</div>
+
+<!-- SECTION 1: DAHALAR -->
+<div class="section reveal">
+  <div class="section-header">
+    <span class="section-num">I</span>
+    <div class="section-title">Тўрт Даҳа ва Маҳаллалари<em>Асарда тилга олинган маҳаллалар даҳалар бўйича</em></div>
+  </div>
+
+  <div class="daha-grid">
+
+    <!-- Shayxontahur -->
+    <div class="daha-card">
+      <div class="daha-head" style="background:#fff5f5; border-bottom:2px solid #c87a7a;">
+        <div class="daha-name" style="color:#6b2020;">Шайхонтаҳур Даҳаси</div>
+        <div class="daha-sub">Шайх Хованд Таҳур номи билан аталган</div>
+      </div>
+      <div class="daha-body">
+        <div class="mahalla-tags">
+          <span class="tag tag-sh">Қиёт</span>
+          <span class="tag tag-sh">Қорёрди</span>
+          <span class="tag tag-sh">Занжирлик</span>
+          <span class="tag tag-sh">Турк</span>
+          <span class="tag tag-sh">Янги шаҳар</span>
+          <span class="tag tag-sh">Ганжтепа</span>
+          <span class="tag tag-sh">Минор</span>
+          <span class="tag tag-sh">Камолон</span>
+          <span class="tag tag-sh">Оқмасжид</span>
+          <span class="tag tag-sh">Ҳожа Рушнойи</span>
+          <span class="tag tag-sh">Ялангқари</span>
+          <span class="tag tag-sh">Парчабоф</span>
+          <span class="tag tag-sh">Ҳастимом</span>
+          <span class="tag tag-sh">Ҳавзбоғ</span>
+          <span class="tag tag-sh">Шоҳнишин</span>
+          <span class="tag tag-sh">Муродали</span>
+          <span class="tag tag-sh">Девонбеги</span>
+          <span class="tag tag-sh">Каллахона</span>
+          <span class="tag tag-sh">Санчиқмон</span>
+          <span class="tag tag-sh">Ҳофиз Куҳакий</span>
+          <span class="tag tag-sh">Чиратой</span>
+          <span class="tag tag-sh">Кошғариён</span>
+          <span class="tag tag-sh">Сузукота</span>
+          <span class="tag tag-sh">Хужакуча</span>
+          <span class="tag tag-sh">Қоратош</span>
+          <span class="tag tag-sh">Мерганча</span>
+          <span class="tag tag-sh">Қатортерак</span>
+          <span class="tag tag-sh">Арқақуча</span>
+          <span class="tag tag-sh">Жангоб</span>
+          <span class="tag tag-sh">Қашқар</span>
+          <span class="tag tag-sh">Ҳиштмасжид</span>
+          <span class="tag tag-sh">Девонаи Бурх</span>
+          <span class="tag tag-sh">Темирчилик</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sebzor -->
+    <div class="daha-card">
+      <div class="daha-head" style="background:#fffbf0; border-bottom:2px solid #d4a043;">
+        <div class="daha-name" style="color:#7a4f10;">Себзор Даҳаси</div>
+        <div class="daha-sub">Абу Бакр Қаффол Шоший (903–976) номи билан аталган</div>
+      </div>
+      <div class="daha-body">
+        <div class="mahalla-tags">
+          <span class="tag tag-s">Чорсу</span>
+          <span class="tag tag-s">Тахтапул</span>
+          <span class="tag tag-s">Коҳота</span>
+          <span class="tag tag-s">Иброҳимота</span>
+          <span class="tag tag-s">Тарновбоши</span>
+          <span class="tag tag-s">Охунгузар</span>
+          <span class="tag tag-s">Дегрез</span>
+          <span class="tag tag-s">Пичоқчилик</span>
+          <span class="tag tag-s">Сарфарос</span>
+          <span class="tag tag-s">Чуқуркупрук</span>
+          <span class="tag tag-s">Аштак</span>
+          <span class="tag tag-s">Қозикуча</span>
+          <span class="tag tag-s">Махсидузлик</span>
+          <span class="tag tag-s">Тинчбоф</span>
+          <span class="tag tag-s">Ҳазрати имом</span>
+          <span class="tag tag-s">Тарозишикан</span>
+          <span class="tag tag-s">Мутулкуча</span>
+          <span class="tag tag-s">Гулбозор</span>
+          <span class="tag tag-s">Обиназир</span>
+          <span class="tag tag-s">Кадубод</span>
+          <span class="tag tag-s">Арпапоя</span>
+          <span class="tag tag-s">Қоратут</span>
+          <span class="tag tag-s">Чеҳабулор</span>
+          <span class="tag tag-s">Калтатой</span>
+          <span class="tag tag-s">Баландмасжид</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Kukcha -->
+    <div class="daha-card">
+      <div class="daha-head" style="background:#f0f5fb; border-bottom:2px solid #7aa3c8;">
+        <div class="daha-name" style="color:#1e4a72;">Кўкча Даҳаси</div>
+        <div class="daha-sub">Шайх Зайниддин (1214–?) номи билан аталган</div>
+      </div>
+      <div class="daha-body">
+        <div class="mahalla-tags">
+          <span class="tag tag-k">Шуртепа гузари</span>
+          <span class="tag tag-k">Лангар масжиди</span>
+          <span class="tag tag-k">Чармгарон</span>
+          <span class="tag tag-k">Маҳкама</span>
+        </div>
+        <p style="font-size:13px;color:var(--muted);margin-top:14px;font-style:italic;">Кўкча даҳасидаги маҳаллалар асарда камроқ батафсил тилга олинган.</p>
+      </div>
+    </div>
+
+    <!-- Beshyoroch -->
+    <div class="daha-card">
+      <div class="daha-head" style="background:#f0f7f0; border-bottom:2px solid #7ab87a;">
+        <div class="daha-name" style="color:#1e5a1e;">Бешёроч Даҳаси</div>
+        <div class="daha-sub">Зангиота (ваф. 1258) номи билан аталган</div>
+      </div>
+      <div class="daha-body">
+        <div class="mahalla-tags">
+          <span class="tag tag-b">Дарвозакент</span>
+          <span class="tag tag-b">Нормуҳаммад қушбеги мадрасаси яқини</span>
+          <span class="tag tag-b">Самарқанд дарвоза маҳалласи</span>
+          <span class="tag tag-b">Кукмасжид атрофи</span>
+        </div>
+        <p style="font-size:13px;color:var(--muted);margin-top:14px;font-style:italic;">Бешёроч ҳақида маълумотлар асарда нисбатан кам.</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<hr class="section-rule">
+<div class="divider">✦ ✦ ✦</div>
+<hr class="section-rule">
+
+<!-- SECTION 2: DETAILED TABLE -->
+<div class="section reveal">
+  <div class="section-header">
+    <span class="section-num">II</span>
+    <div class="section-title">Маҳаллалар Ҳақида Аниқ Маълумотлар<em>Асар ва архив ҳужжатлари асосида</em></div>
+  </div>
+
+  <table class="info-table">
+    <thead>
+      <tr>
+        <th>Маҳалла</th>
+        <th>Даҳа</th>
+        <th>Маълумот</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="mahalla-name-cell">Чорсу</td>
+        <td><span class="badge badge-s">Себзор</span></td>
+        <td>XI асрдан мавжуд — Тошкентдаги энг қадимий маҳаллалардан бири. Хожа Аҳрор мадрасаси (1451) ва Кукалдош мадрасаси (XVI аср) шу ерда жойлашган.</td>
+      </tr>
+      <tr>
+        <td class="mahalla-name-cell">Обиназир</td>
+        <td><span class="badge badge-s">Себзор</span></td>
+        <td>600 йилдан бери мавжуд — Тошкентдаги кўҳна маҳаллалардан.</td>
+      </tr>
+      <tr>
+        <td class="mahalla-name-cell">Дарвозакент</td>
+        <td><span class="badge badge-b">Бешёроч</span></td>
+        <td>Муҳаммад Олим Сиддиқийнинг 1624 йилда ёзилган «Ламаҳот мин нафаҳот ул-қудс» асарида тилга олинган. Тошкентдаги тарихий манбаларда учрайдиган энг қадимий маҳалла номларидан.</td>
+      </tr>
+      <tr>
+        <td class="mahalla-name-cell">Қорёрди</td>
+        <td><span class="badge badge-sh">Шайхонтаҳур</span></td>
+        <td>1868 йилги архив маълумотларига кўра <strong>60 та хонадон</strong>. Қудуқбоши, Занжирлик ва Қиёт маҳаллалари билан туташ. Ҳозирги Пахтакор стадиони ва Алишер Навоий номидаги Санъат саройи ўрнида бўлган.</td>
+      </tr>
+      <tr>
+        <td class="mahalla-name-cell">Қиёт</td>
+        <td><span class="badge badge-sh">Шайхонтаҳур</span></td>
+        <td>5 та масжид бўлган. Эшонқули додхоҳ мадрасасига <strong>2 та тегирмон</strong> вақф қилинган. Муҳаммад Солиҳхужа шу маҳаллада имомлик қилган.</td>
+      </tr>
+      <tr>
+        <td class="mahalla-name-cell">Коҳота</td>
+        <td><span class="badge badge-s">Себзор</span></td>
+        <td><strong>203 та ҳовли</strong> — Себзор даҳасидаги энг катта маҳаллалардан. Яссавия сулукидан Коҳ ота мозори машҳур чиллахонаси билан — ҳозирда ҳам мавжуд.</td>
+      </tr>
+      <tr>
+        <td class="mahalla-name-cell">Тахтапул</td>
+        <td><span class="badge badge-s">Себзор</span></td>
+        <td><strong>137 та ҳовли</strong>. Жуманбий мадрасаси (1856/1862) ва Юнусхужа халфа мадрасаси шу ерда. Жуманбий Мирзобой ўғли Тошкентнинг Себзор даҳасига қарашли Тахтапул маҳалласидан бўлган.</td>
+      </tr>
+      <tr>
+        <td class="mahalla-name-cell">Хужакуча</td>
+        <td><span class="badge badge-sh">Шайхонтаҳур</span></td>
+        <td><strong>135 та ҳовли</strong> — Себзор даҳасидаги йирик маҳаллалардан.</td>
+      </tr>
+      <tr>
+        <td class="mahalla-name-cell">Дегрез</td>
+        <td><span class="badge badge-s">Себзор</span></td>
+        <td>«Дегрез» — қозон қуювчилар яшаган маҳалла. Маҳмуд дастурхончи мадрасаси (1833) шу ерда. Мадраса ва унинг масжиди вақфларидан <strong>12 тилла</strong> даромад келган.</td>
+      </tr>
+      <tr>
+        <td class="mahalla-name-cell">Пичоқчилик</td>
+        <td><span class="badge badge-s">Себзор</span></td>
+        <td>Шарафибой мадрасаси (тахм. 1868–69) ва масжиди шу маҳаллада. Шарафибой масжиди ҳозирда ҳам сақланиб қолган.</td>
+      </tr>
+      <tr>
+        <td class="mahalla-name-cell">Санчиқмон</td>
+        <td><span class="badge badge-sh">Шайхонтаҳур</span></td>
+        <td>Эшон Бурихужа Санчиқмоний мадрасаси (1820) шу маҳаллада. 1 та ҳаммом ва 5 та дўкон вақфи — <strong>300 сум</strong> йиллик даромад.</td>
+      </tr>
+      <tr>
+        <td class="mahalla-name-cell">Ибоҳимота</td>
+        <td><span class="badge badge-s">Себзор</span></td>
+        <td>Себзор даҳасидаги кичик маҳаллалардан — атиги <strong>15 та ҳовли</strong>.</td>
+      </tr>
+      <tr>
+        <td class="mahalla-name-cell">Тарновбоши</td>
+        <td><span class="badge badge-s">Себзор</span></td>
+        <td>Себзор даҳасига қарашли кичик маҳалла — <strong>24 та ҳовли</strong>.</td>
+      </tr>
+      <tr>
+        <td class="mahalla-name-cell">Ҳазрати имом</td>
+        <td><span class="badge badge-s">Себзор</span></td>
+        <td>Қаффол Шоший мозори шу маҳаллада. 1875–76 йилда эшон Азизхон томонидан бир неча гумбаз ва пиши рӣштли минорали жоме масжид қурилган.</td>
+      </tr>
+      <tr>
+        <td class="mahalla-name-cell">Тарозишикан</td>
+        <td><span class="badge badge-s">Себзор</span></td>
+        <td>Хожа Тарозишикан мозори шу маҳаллада. XIX аср охири — XX аср бошларида жоме масжид, мактаб ва қорихона мавжуд бўлган. XX асрнинг 80-йилларида бузиб ташланган.</td>
+      </tr>
+      <tr>
+        <td class="mahalla-name-cell">Оқмасжид</td>
+        <td><span class="badge badge-sh">Шайхонтаҳур</span></td>
+        <td>Шайх Хованд Таҳурнинг ўғли Хожа Довуд мозори маҳалланинг ғарбида жойлашган. Мозор яқинида Хожа Довуд қурдирган масжид ҳам бўлган.</td>
+      </tr>
+      <tr>
+        <td class="mahalla-name-cell">Қашқар</td>
+        <td><span class="badge badge-sh">Шайхонтаҳур</span></td>
+        <td>Муҳаммад Солиҳхужа кексайганида пайшанба кунлари шу маҳалла масжидида дарс берган. Кошғарликлар мазкур маҳаллага жойлашганидан кейин Қошғариён маҳалласи ҳам юзага келган.</td>
+      </tr>
+      <tr>
+        <td class="mahalla-name-cell">Жангоб</td>
+        <td><span class="badge badge-sh">Шайхонтаҳур</span></td>
+        <td>Муаррих Аваз шу маҳаллада яшаган. Парчабоф маҳаллалик аллома ҳам тилга олинади.</td>
+      </tr>
+      <tr>
+        <td class="mahalla-name-cell">Мутулкуча</td>
+        <td><span class="badge badge-s">Себзор</span></td>
+        <td>Қосимбой Қоратутий мадрасаси (1871) шу маҳаллада — архивда «Мукулкуча» номи билан тилга олинган. Мадрасанинг шу маҳаллада ва Мирзо Юсуф мавзесида вақф мулклари бўлган.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- PULL QUOTE -->
+<div class="pull-quote reveal">
+  <p>Катта маҳаллаларда 200 тагача, кичикларида эса 15–20 тагача ҳовли бўлган.</p>
+  <cite>— Муҳаммад Солиҳхужа, «Тарихи жадидайи Тошканд»</cite>
+</div>
+
+<hr class="section-rule">
+
+<!-- SECTION 3: NAMING PATTERNS -->
+<div class="section reveal">
+  <div class="section-header">
+    <span class="section-num">III</span>
+    <div class="section-title">Маҳалла Номларининг Келиб Чиқиши<em>Топонимик тасниф</em></div>
+  </div>
+
+  <div class="naming-grid">
+    <div class="naming-card">
+      <div class="naming-title">Касб-ҳунар бўйича</div>
+      <div class="naming-examples">
+        <strong>Дегрез</strong> — қозон қуювчилар<br>
+        <strong>Пичоқчилик</strong> — пичоқ усталари<br>
+        <strong>Парчабоф</strong> — тўқувчилар<br>
+        <strong>Тинчбоф</strong> — тўқувчилар<br>
+        <strong>Қандолатфурушон</strong> — ширинлик сотувчилар<br>
+        <strong>Чармгарон</strong> — чарм устали
+      </div>
+    </div>
+
+    <div class="naming-card">
+      <div class="naming-title">Муқаддас шахслар номи билан</div>
+      <div class="naming-examples">
+        <strong>Ҳажрати имом</strong> → Ҳазрати имом<br>
+        <strong>Коҳота</strong> — Коҳ ота мозоридан<br>
+        <strong>Ибоҳимота</strong> — Иброҳим ота номидан<br>
+        <strong>Тарозишикан</strong> — Хожа Тарозишикан<br>
+        <strong>Ҳожа Рушнойи</strong> — авлиё номидан<br>
+        <strong>Занжирлик</strong> — диний анъанага оид
+      </div>
+    </div>
+
+    <div class="naming-card">
+      <div class="naming-title">Жойлашув ва этник белги</div>
+      <div class="naming-examples">
+        <strong>Кошғариён</strong> — Қошғарликлар<br>
+        <strong>Турк</strong> — туркий аҳоли<br>
+        <strong>Янги шаҳар</strong> — янги қурилган қисм<br>
+        <strong>Чорсу</strong> — тўрт йўл кесишмаси<br>
+        <strong>Тахтапул</strong> — жойлашув бўйича<br>
+        <strong>Баландмасжид</strong> — иншоот номидан
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="section-rule">
+<div class="divider">✦ ✦ ✦</div>
+<hr class="section-rule">
+
+<!-- SECTION 4: BOSHQARUV -->
+<div class="section reveal">
+  <div class="section-header">
+    <span class="section-num">IV</span>
+    <div class="section-title">Маҳалла Бошқаруви Тизими<em>Қўқон хонлиги ва Россия истилоси даврида</em></div>
+  </div>
+
+  <div class="boshqaruv-list">
+    <div class="boshq-card">
+      <span class="boshq-num">১</span>
+      <div>
+        <div class="boshq-title">Оқсоқол</div>
+        <div class="boshq-desc">Даҳа бошлиғи. Қўқон хонлиги даврида шаҳарнинг обрули хонадон вакилларидан тайинланган. Даҳа маъмурий бошқарувини олиб борган.</div>
+      </div>
+    </div>
+    <div class="boshq-card">
+      <span class="boshq-num">২</span>
+      <div>
+        <div class="boshq-title">Мингбоши</div>
+        <div class="boshq-desc">Россия истилосидан сўнг даҳани идора қилган. Авваллари оқсоқол бажарган вазифаларни ўтаган.</div>
+      </div>
+    </div>
+    <div class="boshq-card">
+      <span class="boshq-num">৩</span>
+      <div>
+        <div class="boshq-title">Элликбоши</div>
+        <div class="boshq-desc">Маҳалла бошқаруви — ҳар бир маҳаллада алоҳида элликбоши бўлган. Маҳалла ички тартибини таъминлаган.</div>
+      </div>
+    </div>
+    <div class="boshq-card">
+      <span class="boshq-num">৪</span>
+      <div>
+        <div class="boshq-title">Тавочи</div>
+        <div class="boshq-desc">Бир неча маҳаллага бириктирилган назоратчи. Архив ҳужжатларида рус тилида «тавгач» шаклида учрайди.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p>
+    <strong>«Тарихи жадидайи Тошканд»</strong> — Муҳаммад Солиҳхужа (XIX аср)<br>
+    Маълумотлар асосида тузилган. Архив манбалари: УзРМДА, И-36 жамғарма.<br>
+    Иловалар: Н.Г. Маллицкий. Тошкент маҳалла ва мавзелари. — Т., 1996.
+  </p>
+</footer>
+
+<script>
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
