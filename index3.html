@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Тошкент маҳалла номлари — Лингвистик таҳлил</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Nunito+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink:    #1A1F2E;
+  --ink2:   #4A5568;
+  --ink3:   #8A96A8;
+  --bg:     #F7F8FA;
+  --white:  #FFFFFF;
+  --border: #E2E8F0;
+  --c1: #2E7D8C; --c2: #4A7C59; --c3: #C0504A;
+  --c4: #5A6B82; --c5: #B07D3A; --c6: #7B5EA7;
+  --c7: #2E8C7D; --c8: #9CA3AF;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Nunito Sans',sans-serif;font-weight:300;background:var(--bg);color:var(--ink);line-height:1.6}
+
+/* COVER */
+.cover{background:var(--ink);color:white;padding:64px 48px 56px;position:relative;overflow:hidden}
+.cover::after{content:'';position:absolute;right:-60px;top:-60px;width:320px;height:320px;border-radius:50%;border:1px solid rgba(255,255,255,0.05)}
+.cover::before{content:'';position:absolute;right:40px;bottom:-80px;width:200px;height:200px;border-radius:50%;border:1px solid rgba(255,255,255,0.04)}
+.cover-label{font-size:10px;letter-spacing:4px;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:20px}
+.cover h1{font-family:'Cormorant Garamond',serif;font-size:clamp(36px,5vw,58px);font-weight:400;line-height:1.1;margin-bottom:12px}
+.cover h1 em{font-style:italic;color:#7EC8D4}
+.cover-sub{font-size:15px;color:rgba(255,255,255,0.5);max-width:560px;margin-bottom:40px}
+.cover-stats{display:flex;gap:0;border:1px solid rgba(255,255,255,0.1);border-radius:10px;overflow:hidden;width:fit-content}
+.cstat{padding:14px 28px;border-right:1px solid rgba(255,255,255,0.08);text-align:center}
+.cstat:last-child{border-right:none}
+.cstat-n{font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:600;color:#7EC8D4;display:block}
+.cstat-l{font-size:10px;color:rgba(255,255,255,0.4);letter-spacing:0.5px}
+
+/* MAIN */
+.main{max-width:1000px;margin:0 auto;padding:48px 32px 80px}
+
+/* SECTION */
+.section{margin-bottom:52px}
+.section-header{display:flex;align-items:baseline;gap:14px;margin-bottom:24px;padding-bottom:12px;border-bottom:1px solid var(--border)}
+.section-num{font-family:'Cormorant Garamond',serif;font-size:42px;font-weight:400;color:var(--border);line-height:1}
+.section-title{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:400;color:var(--ink)}
+.section-desc{font-size:13px;color:var(--ink3);margin-top:2px}
+
+/* CARDS GRID */
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}
+.card{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:20px 22px;position:relative;overflow:hidden}
+.card-accent{position:absolute;top:0;left:0;right:0;height:3px}
+.card-label{font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--ink3);margin-bottom:8px}
+.card-value{font-family:'Cormorant Garamond',serif;font-size:42px;font-weight:600;line-height:1;margin-bottom:4px}
+.card-desc{font-size:13px;color:var(--ink2);line-height:1.5}
+
+/* BARS */
+.bars{display:flex;flex-direction:column;gap:10px}
+.bar-row{display:grid;grid-template-columns:110px 1fr 40px;align-items:center;gap:12px}
+.bar-lbl{font-size:13px;color:var(--ink2);text-align:right;font-style:italic}
+.bar-track{height:26px;background:#F0F4F8;border-radius:5px;overflow:hidden}
+.bar-fill{height:100%;border-radius:5px;display:flex;align-items:center;padding-left:10px}
+.bar-fill span{font-size:12px;font-weight:600;color:white}
+.bar-num{font-size:13px;color:var(--ink3);text-align:right}
+
+/* DONUT WRAP */
+.donut-layout{display:grid;grid-template-columns:200px 1fr;gap:32px;align-items:center}
+.donut-svg{display:block}
+.legend-list{display:flex;flex-direction:column;gap:8px}
+.legend-row{display:flex;align-items:center;gap:10px;padding:7px 10px;border-radius:6px;border:1px solid transparent}
+.legend-row:hover{background:#F7F8FA;border-color:var(--border)}
+.ldot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+.lname{font-size:13px;color:var(--ink2);flex:1}
+.lcount{font-family:'Cormorant Garamond',serif;font-size:16px;font-weight:600;color:var(--ink)}
+.lpct{font-size:11px;color:var(--ink3);width:32px;text-align:right}
+
+/* PREFIX GRID */
+.prefix-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px}
+.prefix-card{background:var(--white);border:1px solid var(--border);border-radius:8px;padding:16px}
+.prefix-key{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:600;color:var(--ink);margin-bottom:4px}
+.prefix-count{font-size:32px;font-weight:300;font-family:'Cormorant Garamond',serif;margin-bottom:6px}
+.prefix-ex{font-size:11px;color:var(--ink3);line-height:1.5}
+
+/* WORD STRUCTURE */
+.word-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+.word-box{background:var(--white);border:1px solid var(--border);border-radius:8px;padding:16px;text-align:center}
+.word-box-n{font-family:'Cormorant Garamond',serif;font-size:38px;font-weight:600;margin-bottom:4px}
+.word-box-l{font-size:11px;color:var(--ink3);letter-spacing:0.5px}
+.word-examples{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.word-chip{font-size:11px;padding:3px 10px;border-radius:12px;border:1px solid var(--border);color:var(--ink2);background:var(--white)}
+
+/* ALPHABET */
+.alpha-grid{display:flex;flex-wrap:wrap;gap:6px}
+.alpha-item{display:flex;flex-direction:column;align-items:center;gap:2px;min-width:44px}
+.alpha-letter{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:600;color:var(--ink)}
+.alpha-bar{width:32px;border-radius:3px;transition:height 0.4s}
+.alpha-count{font-size:10px;color:var(--ink3)}
+
+/* INTERESTING FACTS */
+.fact-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.fact-card{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:18px 20px;display:flex;gap:14px}
+.fact-icon{font-size:22px;flex-shrink:0;margin-top:2px}
+.fact-text{font-size:13px;color:var(--ink2);line-height:1.7}
+.fact-text strong{color:var(--ink);font-weight:600}
+
+/* LONGEST/SHORTEST */
+.extremes{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.extreme-box{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:20px}
+.extreme-title{font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--ink3);margin-bottom:14px}
+.extreme-list{display:flex;flex-direction:column;gap:8px}
+.extreme-item{display:flex;align-items:center;gap:10px}
+.extreme-rank{font-family:'Cormorant Garamond',serif;font-size:16px;color:var(--ink3);width:20px}
+.extreme-name{font-size:14px;color:var(--ink)}
+.extreme-len{font-size:11px;color:var(--ink3);margin-left:auto}
+
+/* FOOTER */
+footer{background:var(--ink);color:rgba(255,255,255,0.35);text-align:center;padding:24px;font-size:11px;letter-spacing:1px}
+
+@media(max-width:640px){
+  .cover{padding:40px 24px}
+  .main{padding:32px 20px 60px}
+  .donut-layout{grid-template-columns:1fr}
+  .fact-grid{grid-template-columns:1fr}
+  .word-grid{grid-template-columns:1fr 1fr}
+  .extremes{grid-template-columns:1fr}
+  .cover-stats{flex-wrap:wrap}
+}
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <div class="cover-label">Лингвистик таҳлил · 2024</div>
+  <h1>Тошкент <em>маҳалла</em><br>номлари</h1>
+  <p class="cover-sub">Эски шаҳарнинг 4 даҳасидаги 228 та ноёб маҳалла номи — тузилиши, маъноси ва тарихи бўйича тўлиқ таҳлил</p>
+  <div class="cover-stats">
+    <div class="cstat"><span class="cstat-n">228</span><span class="cstat-l">ноёб ном</span></div>
+    <div class="cstat"><span class="cstat-n">9.1</span><span class="cstat-l">ўртача узунлик</span></div>
+    <div class="cstat"><span class="cstat-n">4</span><span class="cstat-l">тил таъсири</span></div>
+    <div class="cstat"><span class="cstat-n">8</span><span class="cstat-l">маъно категория</span></div>
+  </div>
+</div>
+
+<div class="main">
+
+<!-- 1. УМУМИЙ РАҚАМЛАР -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-num">01</span>
+    <div><div class="section-title">Умумий кўрсаткичлар</div></div>
+  </div>
+  <div class="cards">
+    <div class="card">
+      <div class="card-accent" style="background:var(--c1)"></div>
+      <div class="card-label">Тузилиши</div>
+      <div class="card-value" style="color:var(--c1)">185</div>
+      <div class="card-desc">бир сўзли маҳалла номи — 81%<br><span style="color:var(--ink3)">Икки сўзли: 43 та · Уч ва ундан кўп: 0</span></div>
+    </div>
+    <div class="card">
+      <div class="card-accent" style="background:var(--c2)"></div>
+      <div class="card-label">Ўртача ҳарф сони</div>
+      <div class="card-value" style="color:var(--c2)">9.1</div>
+      <div class="card-desc">Энг қисқа: «Ëв», «Ўрда» (2–4 ҳарф)<br><span style="color:var(--ink3)">Энг узун: «Янгишаҳар Шоҳидонтепа» (21 ҳарф)</span></div>
+    </div>
+    <div class="card">
+      <div class="card-accent" style="background:var(--c3)"></div>
+      <div class="card-label">Рақамли маҳаллалар</div>
+      <div class="card-value" style="color:var(--c3)">19</div>
+      <div class="card-desc">Рақам билан тугаган номлар<br><span style="color:var(--ink3)">Эшонгузар 1–4, Оҳангузар 1–3...</span></div>
+    </div>
+    <div class="card">
+      <div class="card-accent" style="background:var(--c4)"></div>
+      <div class="card-label">Биринчи ҳарф рекорди</div>
+      <div class="card-value" style="color:var(--c4)">«Қ»</div>
+      <div class="card-desc">28 та маҳалла «Қ» билан бошланади<br><span style="color:var(--ink3)">Қозикўча, Қашқар, Қўрғонтаги...</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- 2. СУФФИКСЛАР -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-num">02</span>
+    <div>
+      <div class="section-title">Энг кўп учрайдиган суффикслар</div>
+      <div class="section-desc">Маҳалла номларининг охирги компоненти — маҳалланинг асосий белгисини кўрсатади</div>
+    </div>
+  </div>
+  <div class="bars" id="suffix-bars"></div>
+</div>
+
+<!-- 3. МАЪНО КАТЕГОРИЯЛАРИ -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-num">03</span>
+    <div>
+      <div class="section-title">Маъно категориялари</div>
+      <div class="section-desc">Ҳар бир маҳалла номи нима ҳақида? — семантик таснифлаш</div>
+    </div>
+  </div>
+  <div class="donut-layout">
+    <div>
+      <svg class="donut-svg" width="200" height="200" viewBox="0 0 200 200" id="donut"></svg>
+    </div>
+    <div class="legend-list" id="legend"></div>
+  </div>
+</div>
+
+<!-- 4. ОЛД ҚЎШИМЧАЛАР -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-num">04</span>
+    <div>
+      <div class="section-title">Олд қўшимчалар — жой ва вақт белгилари</div>
+      <div class="section-desc">Маҳаллалар географик ёки тарихий белги билан номланган</div>
+    </div>
+  </div>
+  <div class="prefix-grid" id="prefix-grid"></div>
+</div>
+
+<!-- 5. СЎЗ ТУЗИЛИШИ -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-num">05</span>
+    <div>
+      <div class="section-title">Сўз тузилиши бўйича</div>
+      <div class="section-desc">Бир сўзли, икки сўзли ва рақамли маҳаллалар</div>
+    </div>
+  </div>
+  <div class="word-grid">
+    <div class="word-box">
+      <div class="word-box-n" style="color:var(--c1)">185</div>
+      <div class="word-box-l">БИР СЎЗЛИ · 81%</div>
+      <div class="word-examples">
+        <span class="word-chip">Кўкча</span><span class="word-chip">Зевак</span>
+        <span class="word-chip">Падаркуш</span><span class="word-chip">Хадра</span>
+        <span class="word-chip">Лабзак</span><span class="word-chip">Тепа</span>
+      </div>
+    </div>
+    <div class="word-box">
+      <div class="word-box-n" style="color:var(--c2)">43</div>
+      <div class="word-box-l">ИККИ СЎЗЛИ · 19%</div>
+      <div class="word-examples">
+        <span class="word-chip">Катта Жангоҳ</span>
+        <span class="word-chip">Юқори Оқмасжид</span>
+        <span class="word-chip">Самарқанд дарвоза</span>
+        <span class="word-chip">Эски Ўрда</span>
+      </div>
+    </div>
+    <div class="word-box">
+      <div class="word-box-n" style="color:var(--c3)">19</div>
+      <div class="word-box-l">РАҚАМЛИ</div>
+      <div class="word-examples">
+        <span class="word-chip">Эшонгузар 1–4</span>
+        <span class="word-chip">Оҳангузар 1–3</span>
+        <span class="word-chip">Арпапоя 1–2</span>
+        <span class="word-chip">Ялангқор 1–2</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 6. АЛФАВИТ ТАРҚАЛИШИ -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-num">06</span>
+    <div>
+      <div class="section-title">Биринчи ҳарф бўйича тарқалиш</div>
+      <div class="section-desc">«Қ» ҳарфи 28 та маҳалла билан абсолют лидер</div>
+    </div>
+  </div>
+  <div class="alpha-grid" id="alpha-grid"></div>
+</div>
+
+<!-- 7. ЭНГ ҚИСҚА / УЗУН -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-num">07</span>
+    <div>
+      <div class="section-title">Энг қисқа ва энг узун номлар</div>
+    </div>
+  </div>
+  <div class="extremes">
+    <div class="extreme-box">
+      <div class="extreme-title">Энг қисқа (2–5 ҳарф)</div>
+      <div class="extreme-list">
+        <div class="extreme-item"><span class="extreme-rank">1</span><span class="extreme-name">Ëв</span><span class="extreme-len">2 ҳарф</span></div>
+        <div class="extreme-item"><span class="extreme-rank">2</span><span class="extreme-name">Ўрда</span><span class="extreme-len">4 ҳарф</span></div>
+        <div class="extreme-item"><span class="extreme-rank">3</span><span class="extreme-name">Ўқчи</span><span class="extreme-len">5 ҳарф</span></div>
+        <div class="extreme-item"><span class="extreme-rank">4</span><span class="extreme-name">Илла</span><span class="extreme-len">5 ҳарф</span></div>
+        <div class="extreme-item"><span class="extreme-rank">5</span><span class="extreme-name">Тепа</span><span class="extreme-len">5 ҳарф</span></div>
+      </div>
+    </div>
+    <div class="extreme-box">
+      <div class="extreme-title">Энг узун (16+ ҳарф)</div>
+      <div class="extreme-list">
+        <div class="extreme-item"><span class="extreme-rank">1</span><span class="extreme-name">Янгишаҳар Шоҳидонтепа</span><span class="extreme-len">21</span></div>
+        <div class="extreme-item"><span class="extreme-rank">2</span><span class="extreme-name">Шайх Зайниддинбобо</span><span class="extreme-len">19</span></div>
+        <div class="extreme-item"><span class="extreme-rank">3</span><span class="extreme-name">Янгишаҳар Ганчтепа</span><span class="extreme-len">19</span></div>
+        <div class="extreme-item"><span class="extreme-rank">4</span><span class="extreme-name">Самарқанд дарвоза</span><span class="extreme-len">17</span></div>
+        <div class="extreme-item"><span class="extreme-rank">5</span><span class="extreme-name">Янгишаҳар Дарвоза</span><span class="extreme-len">17</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 8. ҚИЗИҚАРЛИ ТОПИЛМАЛАР -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-num">08</span>
+    <div>
+      <div class="section-title">Қизиқарли топилмалар</div>
+      <div class="section-desc">Маҳалла номлари орқали тарих, маданият ва жамият ҳақида нима билиш мумкин?</div>
+    </div>
+  </div>
+  <div class="fact-grid" id="facts"></div>
+</div>
+
+</div>
+
+<footer>ТОШКЕНТ ЭСКИ ШАҲАР МАҲАЛЛАЛАРИ · ЛИНГВИСТИК ТАҲЛИЛ · 228 та ноёб ном асосида</footer>
+
+<script>
+const SUFFIXES=[
+  {l:'—кўча',c:17,color:'#2E7D8C',ex:'Бойкўча, Жаркўча, Мўғулкўча, Жинкўча...'},
+  {l:'—бозор',c:12,color:'#4A7C59',ex:'Гулбозор, Заргарлик, Темирчи, Калавабозор...'},
+  {l:'—масжид',c:11,color:'#C0504A',ex:'Баландмасжид, Кўкмасжид, Жирлимасжид...'},
+  {l:'—тепа',c:10,color:'#5A6B82',ex:'Ганчтепа, Оқтепа, Турктепа, Шўртепа...'},
+  {l:'—хона',c:8,color:'#B07D3A',ex:'Ганчхона, Каллахона, Подахона, Хонақоҳ...'},
+  {l:'—шаҳар',c:7,color:'#7B5EA7',ex:'Янгишаҳар, Янгишаҳар Минор, Дарвоза...'},
+  {l:'—маҳалла',c:5,color:'#2E8C7D',ex:'Тожикмаҳалла, Хўжамаҳалла, Янгимаҳалла...'},
+  {l:'—дарвоза',c:4,color:'#8C5A2E',ex:'Самарқанд дарвоза, Ўқчидарвоза...'},
+  {l:'—кўприк',c:3,color:'#6B7280',ex:'Баландкўприк, Чуқуркўприк, Ғишткўприк'},
+  {l:'—мозор',c:3,color:'#9B6B47',ex:'Тиканлимозор, Қўшмозор, Мозорхон'},
+];
+const maxS=17;
+const barsEl=document.getElementById('suffix-bars');
+SUFFIXES.forEach(s=>{
+  const pct=Math.round(s.c/maxS*100);
+  const row=document.createElement('div');
+  row.className='bar-row';
+  row.innerHTML=`<div class="bar-lbl">${s.l}</div>
+  <div class="bar-track">
+    <div class="bar-fill" style="width:${pct}%;background:${s.color}"><span>${s.c}</span></div>
+  </div>
+  <div class="bar-num">${s.c}</div>`;
+  barsEl.appendChild(row);
+  // Trigger animation
+  setTimeout(()=>{},50);
+});
+
+// DONUT
+const CATS=[
+  {n:'Диний',c:27,col:'#C0504A',ex:'масжид, хонақоҳ, мозор, эшон...'},
+  {n:'Табиат',c:27,col:'#4A7C59',ex:'тепа, ариқ, боғ, зор, ҳовуз...'},
+  {n:'Йўл/меъморий',c:24,col:'#2E7D8C',ex:'кўча, кўприк, дарвоза...'},
+  {n:'Касб-ҳунар',c:23,col:'#B07D3A',ex:'бозор, заргар, пичоқчи...'},
+  {n:'Жой белгиси',c:17,col:'#7B5EA7',ex:'юқори, қуйи, баланд, янги...'},
+  {n:'Одам исмлари',c:12,col:'#5A6B82',ex:'бой, хўжа, мирза, дархон...'},
+  {n:'Этник/қавм',c:7,col:'#2E8C7D',ex:'тожик, турк, мўғул, қашқар...'},
+  {n:'Бошқа',c:91,col:'#CBD5E1',ex:'аралаш ёки аниқланмаган...'},
+];
+const total=CATS.reduce((s,c)=>s+c.c,0);
+const svg=document.getElementById('donut');
+const cx=100,cy=100,r=78,sw=28,circ=2*Math.PI*r;
+let off=0;
+CATS.forEach(c=>{
+  const pct=c.c/total;
+  const dash=pct*circ,gap=circ-dash;
+  const el=document.createElementNS('http://www.w3.org/2000/svg','circle');
+  el.setAttribute('cx',cx);el.setAttribute('cy',cy);el.setAttribute('r',r);
+  el.setAttribute('fill','none');el.setAttribute('stroke',c.col);
+  el.setAttribute('stroke-width',sw);
+  el.setAttribute('stroke-dasharray',`${dash} ${gap}`);
+  el.setAttribute('stroke-dashoffset',-off*circ);
+  el.setAttribute('transform',`rotate(-90 ${cx} ${cy})`);
+  svg.appendChild(el);
+  off+=pct;
+});
+// Center
+const t1=document.createElementNS('http://www.w3.org/2000/svg','text');
+t1.setAttribute('x',cx);t1.setAttribute('y',cy-6);t1.setAttribute('text-anchor','middle');
+t1.setAttribute('font-size','28');t1.setAttribute('font-weight','600');
+t1.setAttribute('font-family','Cormorant Garamond,serif');t1.setAttribute('fill','#1A1F2E');
+t1.textContent='228';svg.appendChild(t1);
+const t2=document.createElementNS('http://www.w3.org/2000/svg','text');
+t2.setAttribute('x',cx);t2.setAttribute('y',cy+14);t2.setAttribute('text-anchor','middle');
+t2.setAttribute('font-size','10');t2.setAttribute('fill','#8A96A8');
+t2.setAttribute('font-family','Nunito Sans,sans-serif');
+t2.textContent='маҳалла';svg.appendChild(t2);
+
+// Legend
+const legEl=document.getElementById('legend');
+CATS.forEach(c=>{
+  const pct=Math.round(c.c/total*100);
+  const row=document.createElement('div');
+  row.className='legend-row';
+  row.innerHTML=`<div class="ldot" style="background:${c.col}"></div>
+  <div class="lname">${c.n}<div style="font-size:11px;color:#8A96A8">${c.ex}</div></div>
+  <div class="lcount">${c.c}</div>
+  <div class="lpct">${pct}%</div>`;
+  legEl.appendChild(row);
+});
+
+// PREFIXES
+const PREFIXES=[
+  {k:'Янги—',c:10,col:'#4A7C59',ex:'Янгишаҳар, Янгимаҳалла, Янгихонақоҳ...'},
+  {k:'Рақамли',c:19,col:'#5A6B82',ex:'Эшонгузар 1–4, Оҳангузар 1–3...'},
+  {k:'Эски—',c:4,col:'#8C5A2E',ex:'Эски Ўрда, Эскижўва, Эскинамозгоҳ...'},
+  {k:'Юқори—',c:4,col:'#2E7D8C',ex:'Юқори Оқмасжид, Тахтапул, Мерганча...'},
+  {k:'Катта—',c:3,col:'#C0504A',ex:'Катта Жангоҳ, Катта маҳалла, Каттаҳовуз'},
+  {k:'Ўрта—',c:2,col:'#7B5EA7',ex:'Ўрта Оқмасжид, Ўрта Тахтапул'},
+  {k:'Қуйи—',c:2,col:'#2E8C7D',ex:'Қуйи Мерганча, Қуйи Оқмасжид'},
+  {k:'Баланд—',c:2,col:'#B07D3A',ex:'Баландмасжид, Баландкўприк'},
+];
+const preEl=document.getElementById('prefix-grid');
+PREFIXES.forEach(p=>{
+  const card=document.createElement('div');
+  card.className='prefix-card';
+  card.innerHTML=`<div class="prefix-key">${p.k}</div>
+  <div class="prefix-count" style="color:${p.col}">${p.c}</div>
+  <div class="prefix-ex">${p.ex}</div>`;
+  preEl.appendChild(card);
+});
+
+// ALPHABET
+const ALPHA=[
+  ['Қ',28],['Т',19],['К',18],['Ч',14],['Я',13],['Х',12],
+  ['Б',11],['Ў',10],['М',10],['О',10],['Ш',8],['Э',8],
+  ['Ж',7],['З',6],['Г',5],['Д',5],['П',5],['С',5],
+  ['Ë',2],['Й',1],
+];
+const maxA=28;
+const alphaEl=document.getElementById('alpha-grid');
+ALPHA.forEach(([l,c])=>{
+  const h=Math.max(6,Math.round(c/maxA*60));
+  const col=c>=20?'#C0504A':c>=10?'#2E7D8C':c>=5?'#4A7C59':'#CBD5E1';
+  const item=document.createElement('div');
+  item.className='alpha-item';
+  item.innerHTML=`<div class="alpha-letter">${l}</div>
+  <div class="alpha-bar" style="height:${h}px;background:${col};width:32px;border-radius:3px"></div>
+  <div class="alpha-count">${c}</div>`;
+  alphaEl.appendChild(item);
+});
+
+// FACTS
+const FACTS=[
+  {i:'🕌',t:'<strong>«Масжид» сўзи 11 та маҳалла номида</strong> — диний марказ маҳалла ўзагини белгилаган. Оқмасжид, Кўкмасжид, Жирлимасжид, Сирлимасжид...'},
+  {i:'🌍',t:'<strong>7 та маҳалла этник номга эга</strong>: Тожикмаҳалла, Мўғулкўча, Чалақозоқ, Чиғатой, Қашқар, Андижон — Тошкент тарихан кўп миллатли шаҳар бўлган.'},
+  {i:'⚒️',t:'<strong>Чорсу атрофида касб гузарлари</strong>: Заргарлик, Пичоқчилик, Ковушфурушлик, Сандиқчилик — ўрта асрларда бозор атрофи ихтисослашган.'},
+  {i:'📍',t:'<strong>«Юқори–Ўрта–Қуйи» триадаси</strong>: Оқмасжид, Тахтапул, Мерганча — уч маҳалла бир-бирига уланган, ягона тарихий ўрин.'},
+  {i:'🔢',t:'<strong>Эшонгузар 1–4</strong> — бир маҳалла тўртга бўлинган. Оҳангузар 1–3, Арпапоя 1–2, Ялангқор 1–2 ҳам шу хил. Бўлиниш аҳоли ўсиши билан боғлиқ.'},
+  {i:'🏔️',t:'<strong>«-тепа» — 10 та маҳалла</strong>: Тошкентда тарихан кўплаб тепаликлар бўлган — маҳаллалар шу тепаликлар номидан олинган.'},
+  {i:'💧',t:'<strong>Сув объектлари</strong>: Ариқ, Ҳовуз, Лабзак (ariqdagi o\'t), Тарнов, Каттаҳовуз — сув манбалари маҳалла атрофини белгилаган.'},
+  {i:'🏛️',t:'<strong>«Эски» ва «Янги» зиддияти</strong>: Эски Ўрда — Янгимаҳалла, Эскижўва — Янгишаҳар. Шаҳар ривожланганда янги маҳаллалар кўпайган.'},
+];
+const factsEl=document.getElementById('facts');
+FACTS.forEach(f=>{
+  const card=document.createElement('div');
+  card.className='fact-card';
+  card.innerHTML=`<div class="fact-icon">${f.i}</div><div class="fact-text">${f.t}</div>`;
+  factsEl.appendChild(card);
+});
+</script>
+</body>
+</html>
