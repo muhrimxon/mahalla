@@ -1,0 +1,1111 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Навоий кўчаси — Тошкентнинг Юраги</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,300;1,8..60,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #C9A84C;
+    --gold-light: #E8C96E;
+    --gold-pale: #F7EDD5;
+    --ink: #1A1208;
+    --ink-mid: #3D2F15;
+    --ink-soft: #6B5532;
+    --cream: #FBF6EC;
+    --cream-dark: #F0E6CC;
+    --tile-blue: #2B5F8E;
+    --tile-teal: #1B7C6E;
+    --tile-turq: #4AADA3;
+    --brick: #8B3A2F;
+    --section-gap: 6rem;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--cream);
+    color: var(--ink);
+    font-family: 'Source Serif 4', Georgia, serif;
+    font-size: 18px;
+    line-height: 1.8;
+    overflow-x: hidden;
+  }
+
+  /* ─── HERO ─── */
+  .hero {
+    position: relative;
+    height: 100vh;
+    min-height: 700px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+    background: var(--ink);
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background-image:
+      url('https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Kukeldash_Madrasah%2C_Tashkent.jpg/1280px-Kukeldash_Madrasah%2C_Tashkent.jpg');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.35;
+    filter: sepia(0.4) saturate(0.8);
+  }
+
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      rgba(26,18,8,0.6) 0%,
+      rgba(26,18,8,0.3) 40%,
+      rgba(26,18,8,0.7) 80%,
+      rgba(26,18,8,0.95) 100%
+    );
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    padding: 2rem;
+    max-width: 900px;
+  }
+
+  .hero-tagline {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(0.85rem, 1.5vw, 1rem);
+    font-weight: 300;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--gold-light);
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    animation: fadeUp 1s 0.3s forwards;
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 8vw, 6.5rem);
+    font-weight: 900;
+    color: #fff;
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+    opacity: 0;
+    animation: fadeUp 1s 0.6s forwards;
+  }
+
+  .hero h1 span {
+    color: var(--gold-light);
+    font-style: italic;
+  }
+
+  .hero-sub {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+    font-weight: 300;
+    font-style: italic;
+    color: rgba(255,255,255,0.75);
+    margin-top: 1.5rem;
+    opacity: 0;
+    animation: fadeUp 1s 0.9s forwards;
+  }
+
+  .hero-scroll {
+    position: absolute;
+    bottom: 2.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--gold-light);
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    opacity: 0;
+    animation: fadeIn 1s 1.5s forwards;
+  }
+
+  .hero-scroll-line {
+    width: 1px;
+    height: 50px;
+    background: linear-gradient(to bottom, var(--gold), transparent);
+    animation: scrollPulse 2s 1.5s infinite;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+    padding: 1rem 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: all 0.4s;
+  }
+
+  nav.scrolled {
+    background: rgba(26,18,8,0.95);
+    backdrop-filter: blur(10px);
+    padding: 0.75rem 3rem;
+    border-bottom: 1px solid rgba(201,168,76,0.2);
+  }
+
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--gold-light);
+    text-decoration: none;
+    letter-spacing: 0.05em;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    color: rgba(255,255,255,0.7);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--gold-light); }
+
+  /* ─── ORNAMENT ─── */
+  .ornament {
+    text-align: center;
+    color: var(--gold);
+    font-size: 1.5rem;
+    letter-spacing: 0.5em;
+    margin: 2rem 0;
+    opacity: 0.6;
+  }
+
+  .divider {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--gold), transparent);
+    margin: 3rem 0;
+    opacity: 0.4;
+  }
+
+  /* ─── TILE PATTERN ─── */
+  .tile-band {
+    height: 12px;
+    background: repeating-linear-gradient(
+      90deg,
+      var(--tile-blue) 0px,
+      var(--tile-blue) 12px,
+      var(--tile-teal) 12px,
+      var(--tile-teal) 24px,
+      var(--tile-turq) 24px,
+      var(--tile-turq) 36px,
+      var(--gold) 36px,
+      var(--gold) 48px
+    );
+    opacity: 0.85;
+  }
+
+  /* ─── SECTIONS ─── */
+  .section {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: var(--section-gap) 2rem;
+  }
+
+  .section-wide {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: var(--section-gap) 2rem;
+  }
+
+  .section-label {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.8rem;
+    font-weight: 400;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1rem;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1.15;
+    margin-bottom: 2rem;
+  }
+
+  .section-title em {
+    color: var(--tile-blue);
+    font-style: italic;
+  }
+
+  .lead {
+    font-size: 1.15rem;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--ink-soft);
+    border-left: 3px solid var(--gold);
+    padding-left: 1.5rem;
+    margin-bottom: 2rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.35rem;
+    line-height: 1.7;
+  }
+
+  p {
+    color: var(--ink-mid);
+    margin-bottom: 1.2rem;
+    font-size: 1.05rem;
+    font-weight: 300;
+    line-height: 1.85;
+  }
+
+  strong { color: var(--ink); font-weight: 600; }
+
+  /* ─── PULLQUOTE ─── */
+  .pullquote {
+    background: var(--ink);
+    color: #fff;
+    padding: 3rem 4rem;
+    margin: 4rem -4rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .pullquote::before {
+    content: '❝';
+    position: absolute;
+    top: -0.5rem;
+    left: 2rem;
+    font-family: 'Playfair Display', serif;
+    font-size: 6rem;
+    color: var(--gold);
+    opacity: 0.25;
+    line-height: 1;
+  }
+
+  .pullquote blockquote {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+    font-style: italic;
+    font-weight: 300;
+    line-height: 1.7;
+    color: rgba(255,255,255,0.9);
+    position: relative;
+    z-index: 1;
+  }
+
+  .pullquote cite {
+    display: block;
+    font-family: 'Source Serif 4', serif;
+    font-size: 0.85rem;
+    font-style: normal;
+    color: var(--gold-light);
+    letter-spacing: 0.1em;
+    margin-top: 1rem;
+  }
+
+  /* ─── TIMELINE ─── */
+  .timeline {
+    position: relative;
+    padding: 2rem 0;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: linear-gradient(to bottom, transparent, var(--gold) 10%, var(--gold) 90%, transparent);
+    opacity: 0.5;
+  }
+
+  .timeline-item {
+    padding-left: 2.5rem;
+    margin-bottom: 3rem;
+    position: relative;
+  }
+
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -4px;
+    top: 0.5rem;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--gold);
+    box-shadow: 0 0 0 3px rgba(201,168,76,0.2);
+  }
+
+  .timeline-year {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--gold);
+    margin-bottom: 0.25rem;
+  }
+
+  .timeline-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 0.5rem;
+  }
+
+  .timeline-text {
+    font-size: 0.95rem;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+
+  /* ─── MAHALLA CARDS ─── */
+  .mahalla-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2.5rem;
+  }
+
+  .mahalla-card {
+    background: #fff;
+    border: 1px solid rgba(201,168,76,0.25);
+    border-radius: 4px;
+    padding: 1.75rem;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+
+  .mahalla-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: var(--gold);
+  }
+
+  .mahalla-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 40px rgba(26,18,8,0.1);
+  }
+
+  .mahalla-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 0.5rem;
+  }
+
+  .mahalla-detail {
+    font-size: 0.88rem;
+    color: var(--ink-soft);
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  .mahalla-tag {
+    display: inline-block;
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--tile-blue);
+    border: 1px solid rgba(43,95,142,0.3);
+    padding: 2px 8px;
+    border-radius: 2px;
+    margin-bottom: 0.75rem;
+  }
+
+  /* ─── OBJECT SECTION ─── */
+  .objects-bg {
+    background: var(--ink);
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+    padding: var(--section-gap) 0;
+  }
+
+  .objects-bg::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Kukeldash_madrasah_Tashkent.jpg/1280px-Kukeldash_madrasah_Tashkent.jpg');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.06;
+    filter: sepia(1);
+  }
+
+  .objects-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .objects-inner .section-label { color: var(--gold-light); }
+  .objects-inner .section-title { color: #fff; }
+  .objects-inner .section-title em { color: var(--tile-turq); }
+
+  .objects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2.5rem;
+  }
+
+  .object-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(201,168,76,0.2);
+    border-radius: 4px;
+    padding: 2rem;
+    transition: background 0.3s;
+  }
+
+  .object-card:hover {
+    background: rgba(201,168,76,0.08);
+  }
+
+  .object-era {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.8rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold-light);
+    margin-bottom: 0.5rem;
+  }
+
+  .object-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 0.75rem;
+  }
+
+  .object-desc {
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.6);
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  /* ─── TRAMVAY ─── */
+  .tramvay-section {
+    background: var(--cream-dark);
+    padding: var(--section-gap) 0;
+    position: relative;
+  }
+
+  .tramvay-inner {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  .oybek-quote {
+    background: #fff;
+    border: 1px solid rgba(201,168,76,0.3);
+    padding: 2.5rem 3rem;
+    border-radius: 4px;
+    margin: 2.5rem 0;
+    position: relative;
+  }
+
+  .oybek-quote::before {
+    content: '«';
+    position: absolute;
+    top: 1rem;
+    left: 1.5rem;
+    font-family: 'Playfair Display', serif;
+    font-size: 4rem;
+    color: var(--gold);
+    opacity: 0.3;
+    line-height: 1;
+  }
+
+  .oybek-quote p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15rem;
+    font-style: italic;
+    font-weight: 300;
+    color: var(--ink);
+    line-height: 1.8;
+    padding-top: 1rem;
+  }
+
+  .oybek-quote cite {
+    display: block;
+    font-family: 'Source Serif 4', serif;
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    font-style: normal;
+    color: var(--gold);
+    margin-top: 1rem;
+  }
+
+  /* ─── PHOTO MOSAIC ─── */
+  .mosaic {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: 250px 250px;
+    gap: 4px;
+    margin: 3rem 0;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .mosaic img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: sepia(0.15) saturate(0.9);
+    transition: filter 0.4s;
+  }
+
+  .mosaic img:hover { filter: sepia(0) saturate(1); }
+
+  .mosaic .span2 { grid-row: span 2; }
+
+  /* ─── MAP SECTION ─── */
+  .map-section {
+    background: #fff;
+    padding: var(--section-gap) 0;
+  }
+
+  .map-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  .street-path {
+    display: flex;
+    gap: 0;
+    align-items: stretch;
+    margin: 3rem 0;
+    border-radius: 4px;
+    overflow: hidden;
+    border: 1px solid rgba(201,168,76,0.2);
+  }
+
+  .street-stop {
+    flex: 1;
+    padding: 1.5rem 1rem;
+    text-align: center;
+    border-right: 1px solid rgba(201,168,76,0.15);
+    transition: background 0.3s;
+    cursor: default;
+  }
+
+  .street-stop:last-child { border-right: none; }
+  .street-stop:hover { background: var(--gold-pale); }
+
+  .stop-icon {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .stop-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 0.25rem;
+  }
+
+  .stop-sub {
+    font-size: 0.72rem;
+    color: var(--ink-soft);
+    letter-spacing: 0.05em;
+  }
+
+  /* ─── FACTS ─── */
+  .facts-bar {
+    background: var(--gold);
+    padding: 2.5rem 0;
+    overflow: hidden;
+  }
+
+  .facts-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+  }
+
+  .fact-item {
+    text-align: center;
+  }
+
+  .fact-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: var(--ink);
+    display: block;
+  }
+
+  .fact-label {
+    font-size: 0.8rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(26,18,8,0.65);
+  }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--ink);
+    color: rgba(255,255,255,0.4);
+    text-align: center;
+    padding: 3rem 2rem;
+    font-size: 0.85rem;
+    font-weight: 300;
+  }
+
+  footer a { color: var(--gold-light); text-decoration: none; }
+
+  /* ─── ANIMATIONS ─── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+
+  @keyframes scrollPulse {
+    0%, 100% { height: 50px; opacity: 1; }
+    50%       { height: 30px; opacity: 0.5; }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s, transform 0.7s;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    nav.scrolled { padding: 0.75rem 1.5rem; }
+    .nav-links { display: none; }
+    .pullquote { margin: 3rem -1rem; padding: 2.5rem 2rem; }
+    .mosaic { grid-template-columns: 1fr; grid-template-rows: auto; }
+    .mosaic .span2 { grid-row: span 1; }
+    .street-path { flex-direction: column; }
+    .street-stop { border-right: none; border-bottom: 1px solid rgba(201,168,76,0.15); }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a class="nav-logo" href="#">Навоий кўчаси</a>
+  <ul class="nav-links">
+    <li><a href="#tarix">Тарих</a></li>
+    <li><a href="#nom">Номлар</a></li>
+    <li><a href="#mahallalar">Маҳаллалар</a></li>
+    <li><a href="#obidalар">Обидалар</a></li>
+    <li><a href="#tramvay">Трамвай</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <p class="hero-tagline">Тошкентнинг сўнгги 150 йиллик тарихи</p>
+    <h1>Навоий <span>кўчаси</span></h1>
+    <p class="hero-sub">Каттакўчадан то Амир Темур хиёбонигача — бир кўчанинг катта тарихи</p>
+  </div>
+  <div class="hero-scroll">
+    <div class="hero-scroll-line"></div>
+    <span>Пастга</span>
+  </div>
+</section>
+
+<div class="tile-band"></div>
+
+<!-- INTRO -->
+<section class="section" id="tarix">
+  <div class="reveal">
+    <p class="section-label">Кириш</p>
+    <h2 class="section-title">Тошкентнинг <em>киндиги</em> қаерда?</h2>
+  </div>
+
+  <div class="reveal">
+    <p class="lead">
+      Тошкентни айланиб юрсанг, баъзан: «Ман Тошкентни киндигиданман!» деган гапларни эшитасан. Киндик қаерда эканини биламиз, мана.
+    </p>
+
+    <p>Юқорида — Кўкалдош мадрасаси, Хожа Аҳрор Валий масжиди, Чорсу. Булар ҳаммаси Тошкентнинг юраги. Пастроқда эса — киндик, Тошкентнинг киндиги.</p>
+
+    <p>Маълумотларга кўра, бу «киндик» тахминан <strong>XI асрда</strong> вужудга келган. Ўрта асрларда бу ерда тўрт томонга — ғарбдан шарққа, жанубдан шимолга қараб чўзилган бозор-растали кўчалар бўлган. Кейинчалик шаҳарнинг барча 12 та дарвозасидан бошланган йўллар ҳам шу ерда келиб туташган.</p>
+
+    <p>Мана шу учинчи томон — бугунги <strong>Навоий кўчаси</strong>. Тошкентнинг сўнгги 150 йиллик тарихидаги энг муҳим кўчаларидан бири. У Эски шаҳар марказини мустамлакачи рус маъмурлари томонидан қурилган Янги шаҳарнинг маркази — ҳозирги Амир Темур хиёбони билан боғлайди.</p>
+  </div>
+</section>
+
+<!-- PHOTO MOSAIC -->
+<div class="section-wide" style="padding-top: 0; padding-bottom: 0;">
+  <div class="mosaic reveal">
+    <img class="span2" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Kukeldash_Madrasah%2C_Tashkent.jpg/1280px-Kukeldash_Madrasah%2C_Tashkent.jpg" alt="Кўкалдош мадрасаси">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/Alisher_Navoiy_Theater_and_Opera%2C_Tashkent_%282%29.jpg/1280px-Alisher_Navoiy_Theater_and_Opera%2C_Tashkent_%282%29.jpg" alt="Навоий театри">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Independence_Square_Tashkent.jpg/1280px-Independence_Square_Tashkent.jpg" alt="Мустақиллик майдони">
+  </div>
+</div>
+
+<!-- FACTS BAR -->
+<div class="facts-bar">
+  <div class="facts-inner">
+    <div class="fact-item reveal">
+      <span class="fact-num">XI</span>
+      <span class="fact-label">Аср — кўчанинг пайдо бўлиши</span>
+    </div>
+    <div class="fact-item reveal">
+      <span class="fact-num">4</span>
+      <span class="fact-label">Тарихий ном олган</span>
+    </div>
+    <div class="fact-item reveal">
+      <span class="fact-num">13</span>
+      <span class="fact-label">Тарихий маҳалла ўтган</span>
+    </div>
+    <div class="fact-item reveal">
+      <span class="fact-num">1901</span>
+      <span class="fact-label">Трамвай пайдо бўлди</span>
+    </div>
+  </div>
+</div>
+
+<!-- STREET PATH -->
+<section class="map-section" id="marshрут">
+  <div class="map-inner">
+    <div class="reveal">
+      <p class="section-label">Йўналиш</p>
+      <h2 class="section-title">Чорсудан <em>Амир Темур</em> хиёбонигача</h2>
+      <p>Навоий кўчаси Тошкентнинг эски ва янги қисмларини боғловчи асосий ўқдир. У Чорсу бозоридан бошланиб, бир неча тарихий нуқтадан ўтиб, Амир Темур хиёбонида тугайди.</p>
+    </div>
+
+    <div class="street-path reveal">
+      <div class="street-stop">
+        <div class="stop-icon">🕌</div>
+        <div class="stop-name">Чорсу</div>
+        <div class="stop-sub">Эски шаҳар маркази</div>
+      </div>
+      <div class="street-stop">
+        <div class="stop-icon">🎓</div>
+        <div class="stop-name">Кўкалдош</div>
+        <div class="stop-sub">XVI аср мадрасаси</div>
+      </div>
+      <div class="street-stop">
+        <div class="stop-icon">⛩</div>
+        <div class="stop-name">Шайхонтоҳур</div>
+        <div class="stop-sub">Тарихий мажмуа</div>
+      </div>
+      <div class="street-stop">
+        <div class="stop-icon">🎭</div>
+        <div class="stop-name">Ҳадра</div>
+        <div class="stop-sub">Цирк ва театрлар</div>
+      </div>
+      <div class="street-stop">
+        <div class="stop-icon">🌉</div>
+        <div class="stop-name">Анҳор</div>
+        <div class="stop-sub">Эски/Янги чегара</div>
+      </div>
+      <div class="street-stop">
+        <div class="stop-icon">🏛</div>
+        <div class="stop-name">Ўрда</div>
+        <div class="stop-sub">XIX аср қалъаси</div>
+      </div>
+      <div class="street-stop">
+        <div class="stop-icon">🌿</div>
+        <div class="stop-name">А. Темур хиёбони</div>
+        <div class="stop-sub">Янги шаҳар маркази</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="tile-band"></div>
+
+<!-- NOM TARIXI -->
+<section class="section" id="nom">
+  <div class="reveal">
+    <p class="section-label">Номлар тарихи</p>
+    <h2 class="section-title">Тўртта ном, <em>бир кўча</em></h2>
+    <p>Тарих давомида бу кўча бир неча марта ном алмаштирди. Ҳар бир ном ўша даврнинг тарихий воқеаларини акс эттирди.</p>
+  </div>
+
+  <div class="timeline reveal">
+    <div class="timeline-item">
+      <div class="timeline-year">~XV–XIX аср</div>
+      <div class="timeline-title">Каттакўча</div>
+      <p class="timeline-text">Тошкентда ном олган саноқли кўчалардан бири. Муаррих Эшонхўжа Тошкандийнинг «Хулосат ул-аҳвол» ва Муҳаммад Солиҳхўжанинг «Тарихи жадидайи Тошканд» асарларида шаҳарнинг асосий кўчаси сифатида тилга олинган.</p>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-year">1884</div>
+      <div class="timeline-title">Тошкўча</div>
+      <p class="timeline-text">Тошкентни босиб олган чор маъмурлари биринчи бўлиб Каттакўчага тош-шағал ётқизган. Шундан кейин тошкентликлар уни «Тошкўча» деб атай бошлаган.</p>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-year">1893</div>
+      <div class="timeline-title">Шайхонтоҳур кўчаси</div>
+      <p class="timeline-text">Шаҳар думаси Эски шаҳарнинг 20 га яқин кўчаларига расмий ном берди. Каттакўча Шайхонтоҳур деб аталди — Шайх Хованди Тоҳур мажмуасига яқинлиги туфайли.</p>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-year">1920-йиллар</div>
+      <div class="timeline-title">Файзулла Хўжаев кўчаси</div>
+      <p class="timeline-text">Кўчанинг бир қисми бухоролик жадид ва СССРнинг асосчиларидан бири — Файзулла Хўжаев номи билан аталди. 1938 йилда у Сталиннинг «Катта террор»ида қатағонга учраганда кўча номи ҳам йўқолди.</p>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-year">1938</div>
+      <div class="timeline-title">Навоий кўчаси</div>
+      <p class="timeline-text">1941 йили Алишер Навоийнинг 500 йиллиги муносабати билан кўчага буюк шоир номи берилди. Шу кундан бери бу ном сақланиб қолган.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PULLQUOTE -->
+<div class="section">
+  <div class="pullquote reveal">
+    <blockquote>
+      Эски шаҳар кўчаларидан юрсам, бетимга лой сачрашидан қўрқаман. Ёмғур ёққан кунларида Эски шаҳар расталарининг ағнаб кетишидан қўрқаман.
+    </blockquote>
+    <cite>— Абдулла Қодирий, «Биз ким ва нималардан қўрқамиз?» (1923)</cite>
+  </div>
+</div>
+
+<!-- MAHALLALAR -->
+<section class="section" id="mahallalar">
+  <div class="reveal">
+    <p class="section-label">Тарихий маҳаллалар</p>
+    <h2 class="section-title">Кўча бўйидаги <em>маҳаллалар</em></h2>
+    <p>Навоий кўчаси бўйида Шайхонтоҳур даҳасига тегишли ўнлаб тарихий маҳаллалар жойлашган бўлган. Ҳар бири ўз тарихи, ҳунари ва шахсиятлари билан ажралиб турган.</p>
+  </div>
+
+  <div class="mahalla-grid reveal">
+    <div class="mahalla-card">
+      <div class="mahalla-tag">Шайхонтоҳур даҳаси</div>
+      <div class="mahalla-name">Баландмасжид</div>
+      <p class="mahalla-detail">400 дан ортиқ хонадон. 1738 йили меъмон Мўминжон қурган баланд масжид. Шоир Мискин (1880–1937) шу ерда яшаган. 1930-йилларда масжид Бешёғочга кўчирилиб, атеизм уйига айлантирилган.</p>
+    </div>
+
+    <div class="mahalla-card">
+      <div class="mahalla-tag">Шайхонтоҳур даҳаси</div>
+      <div class="mahalla-name">Ҳадра</div>
+      <p class="mahalla-detail">100 га яқин хонадон. Тошкўча (Навоий кўчаси)га туташган. Этикдўзлик, темирчилик устахоналари, 2 новвойхона бўлган. Ҳозир Цирк ва театрлар жойлашган ҳудуд.</p>
+    </div>
+
+    <div class="mahalla-card">
+      <div class="mahalla-tag">Шайхонтоҳур даҳаси</div>
+      <div class="mahalla-name">Дегрез</div>
+      <p class="mahalla-detail">220 хонадон. 20 га яқин чўян қозон қуйиш устахонаси. Ёзувчилар Ойбек ва Ойдин шу маҳалладан. Ҳозир Ўзбек миллий академик драма театри жойлашган.</p>
+    </div>
+
+    <div class="mahalla-card">
+      <div class="mahalla-tag">Шайхонтоҳур даҳаси</div>
+      <div class="mahalla-name">Қорёғди</div>
+      <p class="mahalla-detail">130 хонадон, ~450 киши. Тарихчи Муҳаммад Солиҳхўжа туғилиб яшаган маҳалла. Давлат арбоблари Акмал Икромов, Асадулла Хўжаев ҳам шу ерлик. Ҳозир «Пахтакор» стадиони ўрни.</p>
+    </div>
+
+    <div class="mahalla-card">
+      <div class="mahalla-tag">Шайхонтоҳур даҳаси</div>
+      <div class="mahalla-name">Занжирлик</div>
+      <p class="mahalla-detail">100 хонадон. 5 масжид, Эшонқули додхоҳ мадрасаси. 1884 йил 19 декабрда шу мадрасада Тошкентдаги <strong>биринчи рус-тузем мактаби</strong> очилган. Ҳозир Тошкент телестудияси жойлашган.</p>
+    </div>
+
+    <div class="mahalla-card">
+      <div class="mahalla-tag">Шайхонтоҳур даҳаси</div>
+      <div class="mahalla-name">Қиёт</div>
+      <p class="mahalla-detail">100 хонадон, ~650 киши. Ўзбекларнинг қиёт қабиласи. 1865 йил рус қўшинлари кирганида Абдураҳмон Ясовул бошчилигида қаттиқ қаршилик кўрсатилган.</p>
+    </div>
+  </div>
+</section>
+
+<!-- OBIDALARI -->
+<section class="objects-bg" id="obidalар">
+  <div class="objects-inner">
+    <div class="reveal">
+      <p class="section-label">Тарихий обидалар</p>
+      <h2 class="section-title">Кўча бўйидаги <em>қадимий бинолар</em></h2>
+    </div>
+
+    <div class="objects-grid">
+      <div class="object-card reveal">
+        <div class="object-era">XVI аср</div>
+        <div class="object-name">🕌 Кўкалдош мадрасаси</div>
+        <p class="object-desc">Тошкентнинг энг йирик ва машҳур мадрасаларидан. Шоирлар Фурқат (1889–91), Ҳамза (1910–11), Муқимий, муфтий Зиёвуддин эшон Бобохон, хаттот Шоҳмурод котиб ва бошқалар шу ерда таҳсил олган.</p>
+      </div>
+
+      <div class="object-card reveal">
+        <div class="object-era">1840 йил</div>
+        <div class="object-name">🏛 Эшонқулидодхо мадрасаси</div>
+        <p class="object-desc">Тошкент ҳокими Лашкар қушбегининг ўғли, Туркистон ҳокими Эшонқули додхоҳ томонидан қурдирилган. Шаҳардаги иқтисодий жиҳатдан энг яхши таъминланган мадраса. Академик Михаил Андреев, педагог Мунаввар қори шу ерда ўқиган.</p>
+      </div>
+
+      <div class="object-card reveal">
+        <div class="object-era">XIV–XV аср</div>
+        <div class="object-name">⛩ Шайхонтоҳур мажмуаси</div>
+        <p class="object-desc">Шайх Хованди Тоҳур (Шайхонтоҳур) мозори атрофидаги тарихий мажмуа. Юнусхон мақбараси — Мирзо Бобурнинг она томондан бобоси, 1480-йиллардаги Тошкент ҳокими — мажмуадаги энг яхши сақланган обидалардан.</p>
+      </div>
+
+      <div class="object-card reveal">
+        <div class="object-era">XIX аср (Ўрда)</div>
+        <div class="object-name">🏰 Тошкент Ўрдаси</div>
+        <p class="object-desc">XIX асрнинг 30-йилларида Қўқон хони Анҳор каналининг чап соҳилида янги Ўрда қурдирган. 10 минг аскар сиғишига мўлжалланган, майдони қарийб 20 гектар. 1865 йили рус қўшинлари томонидан ишғол этилиб, кейинроқ бузиб ташланган.</p>
+      </div>
+
+      <div class="object-card reveal">
+        <div class="object-era">Регистон</div>
+        <div class="object-name">🌿 Тошкент Регистони</div>
+        <p class="object-desc">XV–XVII асрларда Чорсу майдони атрофида шаклланган Тошкентнинг ўз Регистони бўлган. Дастлаб Хожа Аҳрор жомеъ масжиди ва мадрасаси, кейинчалик Кўкалдош мадрасаси ансамблни ташкил этган.</p>
+      </div>
+
+      <div class="object-card reveal">
+        <div class="object-era">1738 йил</div>
+        <div class="object-name">🕍 Баландмасжид</div>
+        <p class="object-desc">Навоий кўчаси бўйида жойлашган, номи маҳаллага берилган тарихий масжид. 1930-йилларда совет ҳукумати уни Бешёғоч томонга кўчириб, «атеизм уйи» деб атаган. Кейинчалик бузиб ташланган.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="tile-band"></div>
+
+<!-- TRAMVAY -->
+<section class="tramvay-section" id="tramvay">
+  <div class="tramvay-inner">
+    <div class="reveal">
+      <p class="section-label">Трамвай тарихи</p>
+      <h2 class="section-title">«Отсиз юради!» — <em>Трамвай</em> кўчада</h2>
+      <p>Тошкентда трамвай <strong>1901 йили</strong> пайдо бўлган — дастлаб от кучи билан («конка»), кейин 1913 йилда электр трамвайга алмаштирилган. Шайхонтоҳур кўчасида электр трамвайлар пайдо бўлишини кичик Мусо — кейинчалик буюк ёзувчи Ойбек — болалик хотираларида шундай тасвирлаган:</p>
+    </div>
+
+    <div class="oybek-quote reveal">
+      <p>— Tilsim, tilsim!</p>
+      <p>— Yo'q, ajoyibu g'aroyib!</p>
+      <p>— Tramvay, tramvay, deyishadi uni! Odamlardan eshitdim, otsiz yurarmish!</p>
+      <p style="margin-top:1rem">Qor dahshatli yog'moqda. Boshimda eski kir telpak, ustimda eski paxtalik to'n, oyoqlarimda gulchini yirtiq mahsi va teshilgan siyqa kalish. Yo'lkaning chetida turnaqator terilib, tramvayni poylab o'tiramiz…</p>
+      <p>— Otsiz, g'irillab yuradi-ketadi! — Tilsim! Tilsim! — deydi bir bola.</p>
+      <cite>— Ойбек, «Болалик» (хотиралар)</cite>
+    </div>
+
+    <div class="reveal">
+      <p>Ойбекнинг ёзишича, бола-бақра трамвайни Хадрадан Қатортерак, Қатортеракдан Хадрага пиёда харслаб тагидан чопишган. Ушбу кўчада эски чол кишилар эса «Қиёмат яқинлашган», деб сийрак соқолларини тутамлаб ўтиришарди.</p>
+      <p>Ана шу трамвай ва унинг «дринг-дринги» Навоий кўчасининг XX аср тасвирида энг ёрқин образлардан бири бўлиб қолган.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PHOTO SECOND -->
+<div class="section-wide" style="padding: 3rem 2rem;">
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 4px; border-radius: 4px; overflow: hidden;" class="reveal">
+    <img src="https://live.staticflickr.com/65535/52498956774_7c2b3e8490_b.jpg" alt="Тошкент трамвай" style="width:100%;height:300px;object-fit:cover;filter:sepia(0.3);" onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Amir_Temur_square%2C_Tashkent.jpg/1280px-Amir_Temur_square%2C_Tashkent.jpg'">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Amir_Temur_square%2C_Tashkent.jpg/1280px-Amir_Temur_square%2C_Tashkent.jpg" alt="Амир Темур майдони" style="width:100%;height:300px;object-fit:cover;filter:sepia(0.15);">
+  </div>
+</div>
+
+<!-- ZAMONAVIY BINOLAR -->
+<section class="section">
+  <div class="reveal">
+    <p class="section-label">Замонавий кўча</p>
+    <h2 class="section-title">Тарих ва замонавийлик <em>кесишган жой</em></h2>
+    <p>Бугунги Навоий кўчасида тарихий ва замонавий бинолар ёнма-ён туради. Навоий театри (1947), Цирк (1976), ГУМ (1970) — булар кўчанинг мустамлака давридан то истиқлолгача бўлган тарихий қатламларини ифодалайди.</p>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 2rem 0;">
+      <div style="background: #fff; border: 1px solid rgba(201,168,76,0.25); padding: 1.25rem; border-radius: 4px;">
+        <strong style="display: block; color: var(--gold); font-family: 'Playfair Display', serif; font-size: 1.1rem; margin-bottom: 0.5rem;">Сталин даври</strong>
+        <p style="font-size: 0.9rem; margin: 0; color: var(--ink-soft);">1937 — Марказий телеграф<br>1947 — Навоий операси<br>1950 — Ҳамза театри<br>1956 — Пахтакор стадиони</p>
+      </div>
+      <div style="background: #fff; border: 1px solid rgba(201,168,76,0.25); padding: 1.25rem; border-radius: 4px;">
+        <strong style="display: block; color: var(--tile-blue); font-family: 'Playfair Display', serif; font-size: 1.1rem; margin-bottom: 0.5rem;">Мустақиллик даври</strong>
+        <p style="font-size: 0.9rem; margin: 0; color: var(--ink-soft);">1993 — Туркистон саройи<br>1997 — Пойтахт бизнес-центр<br>2012 — Миллий кутубхона<br>2016 — Ҳаят меҳмонхонаси</p>
+      </div>
+    </div>
+
+    <p>Навоий кўчасининг бу бошидаги Чорсу — эски шаҳар маркази бўлса, у боши ҳозир янги шаҳар маркази — Амир Темур хиёбони билан тугайди. 1920-йилларда Тошкент меъморлари олдида шу икки марказни бирлаштириш вазифаси турган. Бугун у бирлашган — мана шу кўча орқали.</p>
+  </div>
+</section>
+
+<!-- FINAL PULLQUOTE -->
+<div class="section">
+  <div class="pullquote reveal">
+    <blockquote>
+      «Шаҳардаги асосий кўча — бу Чорсу бозорида туташувчи тўрт кўча бўлиб, улар тўрт даҳа бўйлаб тарқалган. Муҳаммад Солиҳхўжа энг кўп тилга олган кўча эса Катта кўча бўлиб, у тахминан ҳозирги Навоий кўчасига тўғри келади.»
+    </blockquote>
+    <cite>— Ўктам Султонов, «Муҳаммад Солиҳхожа ва унинг "Тарихи жадидайи Тошканд" асари»</cite>
+  </div>
+</div>
+
+<div class="tile-band"></div>
+
+<footer>
+  <p style="margin-bottom: 0.5rem; font-family: 'Playfair Display', serif; font-size: 1.1rem; color: rgba(255,255,255,0.7);">Навоий кўчаси — Тошкентнинг Юраги</p>
+  <p>Манбалар: Муҳаммад Солиҳхўжа Тошкандий, «Тарихи жадидайи Тошканд» · Ойбек, «Болалик» хотиралари<br>
+  Ўктам Султонов, «Муҳаммад Солиҳхожа» · «Тошкент шаҳри бўйича йўлкўрсаткич» (1937)</p>
+</footer>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 80);
+  });
+
+  const revealEls = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  revealEls.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
